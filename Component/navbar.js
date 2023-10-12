@@ -1,6 +1,6 @@
 function navbar() {
   return ` <header class="header">
-  <a style="margin-left: 27px;cursor:pointer;" href="../HTML/home.html" class="logo"><img src="https://cdn.freelogovectors.net/wp-content/uploads/2021/02/myntra-logo-freelogovectors.net_.png" alt=""></a>
+  <a style="margin-left: 27px;cursor:pointer;" href="../HTML/home.html" class="logo"><img src="../IMAGES/Logo/myntra.svg" alt=""></a>
 <nav>
   <ul class="menu-items">
     <li>
@@ -558,6 +558,28 @@ function navbar() {
   </a>
 
   <div>Wishlist</div>
+</div>
+<div>   
+  <a href="../HTML/WishList.html">
+    <img
+      id="svg"
+      src="https://www.svgrepo.com/show/447895/alphabet.svg"
+      alt=""
+    />
+  </a>
+
+  <div>Language</div>
+</div>
+<div>
+  <a href="../HTML/WishList.html">
+    <img
+      id="svg"
+      src="https://www.svgrepo.com/show/143089/squares.svg"
+      alt=""
+    />
+  </a>
+
+  <div>Theme</div>
 </div>
 
 <div>

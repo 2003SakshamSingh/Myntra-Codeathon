@@ -67,7 +67,7 @@ body {
 .menu-items li {
   font-size: 14px;
   font-weight: 700;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   transition: background 0.3s ease-in-out;
 }
 .menu-items .menu-item-1:hover {
@@ -135,7 +135,7 @@ body {
   width: 80vw;
   top: 80px;
   opacity: 0;
-  visibility: hidden;
+  /* visibility: hidden; */
   transition: all 0.3s ease;
 }
 .mega-menu .content {
