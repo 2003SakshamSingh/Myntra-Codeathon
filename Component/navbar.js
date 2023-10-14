@@ -559,16 +559,7 @@ function navbar() {
 
   <div>Wishlist</div>
 </div>
-<div>   
-  <a href="../HTML/WishList.html">
-    <img
-      id="svg"
-      src="https://www.svgrepo.com/show/447895/alphabet.svg"
-      alt=""
-    />
-  </a>
-
-  <div>Language</div>
+<div id="google_translate_element">   
 </div>
 <div>
   <a href="../HTML/WishList.html">
