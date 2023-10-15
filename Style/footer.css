@@ -232,8 +232,6 @@
 }
 
 #cart-count-info {
-  width: 20px;
-  height: 20px;
   position: absolute;
   top: -8px;
   right: 18px;
@@ -251,6 +249,17 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
+}
+#explore-new {
+  position: absolute;
+  top: -32px;
+  right: -8px;
+  color: #f16565;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
 }
 
 /* Home Screen Drop Down Menu for Profile Section */

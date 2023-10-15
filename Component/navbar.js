@@ -567,18 +567,57 @@ function navbar() {
       alt=""
       />
     </a>
-
+    
     <div class="dropdown">
-      <button class="dropbtn">Explore</button>
+    <button class="dropbtn">Explore</button>
+    <span id = "explore-new">NEW</span>
       <div class="dropdown-content">
-        <h3>Choose Language</h3>
+        <h3>Try Myntra's latest features !</h3>
+
+        <p class="explore-option-1">
+          <b>Choose Language</b> &nbsp&nbsp
+          <select name="language" id="language">
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Telugu">Telugu</option>
+            <option value="Gujarati">Gujarati</option>
+            <option value="Bangla">Bangla</option>
+            <option value="Marathi">Marathi</option>
+          </select>
+        </p>
         
-        <a href="set language from here">English</button><br>
-        <a href="set language from here">Hindi</button><br>
-        <a href="set language from here">Telugu</button><br>
-        <a href="set language from here">Gujarati</button><br>
-        <a href="set language from here">Bangla</button><br>
-        <a href="set language from here">Marathi</button><br>
+        <p class="explore-option-2">
+          <b>Choose Theme</b> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp
+          <select name="theme" id="theme">
+            <option value="Light">Light</option>
+            <option value="Dark">Dark</option>
+            <option value="Festive">Festive</option>
+            <option value="Gold">Gold</option>
+            <option value="Summer">Summer</option>
+            <option value="Surprise">Surprise</option>
+          </select>
+        </p>
+        
+        <p class="explore-option-3">
+          <b>Local HOT Sellers !
+          <img
+            id="svg"
+            src="../IMAGES/Nav-Bar/fire.svg"
+            alt=""
+          />
+          </b>
+        </p>
+
+        <p class="explore-option-4">
+          <b>Create your Local Store 
+          <img
+            id="svg"
+            src="https://www.svgrepo.com/show/380195/eating-placesfood-cart-food.svg"
+            alt=""
+          />
+          </b>
+        </p>
+
       </div>
     </div>
   </div>
