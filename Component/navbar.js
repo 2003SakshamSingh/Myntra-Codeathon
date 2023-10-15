@@ -563,13 +563,13 @@ function navbar() {
     <a>
       <img
       id="svg"
-      src="https://www.svgrepo.com/show/447895/alphabet.svg"
+      src="../IMAGES/Nav-Bar/search-globe.svg"
       alt=""
       />
     </a>
 
     <div class="dropdown">
-      <button class="dropbtn">Language</button>
+      <button class="dropbtn">Explore</button>
       <div class="dropdown-content">
         <h3>Choose Language</h3>
         
@@ -582,31 +582,8 @@ function navbar() {
       </div>
     </div>
   </div>
+
   <div class="nav-last-4">
-    <a>
-      <img
-        id="svg"
-        src="https://www.svgrepo.com/show/143089/squares.svg"
-        alt=""
-      />
-    </a>
-
-    <div class="dropdown">
-      <button class="dropbtn">Theme</button>
-      <div class="dropdown-content">
-        <h3>Choose Theme</h3>
-        
-        <a href="set _____theme_____ from here">Light</button><br>
-        <a href="set _____theme_____ from here">Dark</button><br>
-        <a href="set _____theme_____ from here">Festive</button><br>
-        <a href="set _____theme_____ from here">Gold</button><br>
-        <a href="set _____theme_____ from here">Sunny</button><br>
-        <a href="set _____theme_____ from here">Surprise</button><br>
-      </div>
-    </div>
-  </div>
-
-  <div class="nav-last-5">
     <a href="../HTML/cart.html">
       <img
         id="svg"
