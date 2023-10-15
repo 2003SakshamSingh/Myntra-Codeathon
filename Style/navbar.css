@@ -135,7 +135,7 @@ body {
   width: 80vw;
   top: 80px;
   opacity: 0;
-  /* visibility: hidden; */
+  visibility: hidden;
   transition: all 0.3s ease;
 }
 .mega-menu .content {
@@ -229,9 +229,10 @@ body {
   margin-right: 15px;
   position: relative;
   display: flex;
+  font-size: 12px;
   height: 40px;
 }
-.nav-last > div {
+.nav-last > div {   /*last div in nav-last*/
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -239,8 +240,45 @@ body {
   font-weight: 700;
   align-items: center;
   padding-top: 5px;
-  margin-left: 15px;
+  margin-left: 15px;  
 }
+.nav-last .nav-last-1:hover{
+  border-bottom: 3px solid #ee5f73;
+  padding-bottom: 52px;
+}
+.nav-last .nav-last-2:hover{
+  border-bottom: 3px solid #f26a10;
+  padding-bottom: 52px;
+}
+.nav-last .nav-last-3:hover{
+  border-bottom: 3px solid #0db7af;
+  padding-bottom: 52px;
+}
+.nav-last .nav-last-4:hover{
+  border-bottom: 3px solid #f2c210;
+  padding-bottom: 52px;
+}
+.nav-last .nav-last-5:hover{
+  border-bottom: 3px solid #ff3f6c;
+  padding-bottom: 52px;
+}
+
+.nav-last .nav-last-1 h3{
+  color: #ee5f73;
+}
+.nav-last .nav-last-2 h3{
+  color: #f26a10;
+}
+.nav-last .nav-last-3 h3{
+  color: #0db7af;
+}
+.nav-last .nav-last-4 h3{
+  color: #f2c210;
+}
+.nav-last .nav-last-5 h3{
+  color: #ff3f6c;
+}
+
 
 #svg {
   height: 17px !important;
@@ -301,7 +339,7 @@ body {
 }
 .mega-menu .content-6 {
   background: #fff;
-  box-shadow: 1px 1px 25px -4px rgba(207, 28, 28, 0.54);
+  box-shadow: 1px 1px 25px -4px rgba(0, 0, 0, 0.54);
   position: relative;
   top: 30px;
   margin: 0 auto;
