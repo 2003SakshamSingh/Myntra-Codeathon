@@ -563,66 +563,49 @@ function navbar() {
     <a>
       <img
       id="svg"
-      src="../IMAGES/Nav-Bar/search-globe.svg"
+      src="../IMAGES/Nav-Bar/black-friday-offer-sale.svg"
       alt=""
       />
     </a>
     
     <div class="dropdown">
-    <button class="dropbtn">Explore</button>
-    <span id = "explore-new">NEW</span>
+    <button class="dropbtn">Local Store</button>
+    <span id = "local-new">NEW</span>
       <div class="dropdown-content">
-        <h3>Try Myntra's latest features !</h3>
+        <h3>Local Trending !</h3>
 
-        <p class="explore-option-1">
-          <b>Choose Language</b> &nbsp&nbsp
-          <select name="language" id="language">
-            <option value="English">English</option>
-            <option value="Hindi">Hindi</option>
-            <option value="Telugu">Telugu</option>
-            <option value="Gujarati">Gujarati</option>
-            <option value="Bangla">Bangla</option>
-            <option value="Marathi">Marathi</option>
+        <p class="local-option-1">
+          <b>Local HOT Sellers</b> &nbsp&nbsp
+          <select name="category" id="category">
+            <option value="Footwear">Footwear</option>
+            <option value="Cosmetics">Cosmetics</option>
+            <option value="Grooming">Grooming</option>
+            <option value="Decor">Decor</option>
           </select>
         </p>
-        
-        <p class="explore-option-2">
-          <b>Choose Theme</b> &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp
-          <select name="theme" id="theme">
-            <option value="Light">Light</option>
-            <option value="Dark">Dark</option>
-            <option value="Festive">Festive</option>
-            <option value="Gold">Gold</option>
-            <option value="Summer">Summer</option>
-            <option value="Surprise">Surprise</option>
-          </select>
-        </p>
-        
-        <p class="explore-option-3">
-          <b>Local HOT Sellers !
-          <img
-            id="svg"
-            src="../IMAGES/Nav-Bar/fire.svg"
-            alt=""
-          />
-          </b>
-        </p>
 
-        <p class="explore-option-4">
-          <b>Create your Local Store 
-          <img
-            id="svg"
-            src="https://www.svgrepo.com/show/380195/eating-placesfood-cart-food.svg"
-            alt=""
-          />
-          </b>
-        </p>
+
 
       </div>
     </div>
   </div>
-
   <div class="nav-last-4">
+    <a>
+    <img
+      id="svg"
+      src="../IMAGES/Nav-Bar/translate.svg"
+      alt=""
+    />
+    </a>
+    
+    <div class="dropdown">
+    <button class="dropbtn">Language</button>
+      <div class="dropdown-content" id="google_translate_element">
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-last-5">
     <a href="../HTML/cart.html">
       <img
         id="svg"
@@ -632,9 +615,8 @@ function navbar() {
     </a>
    
     <div>Bag</div>
-    
+    <span id = "cart-count-info">0</span>    
   </div>
-  <div id="google_translate_element"></div>
 </div>
 
 </header>`;
