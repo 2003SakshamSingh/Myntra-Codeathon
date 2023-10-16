@@ -630,11 +630,13 @@ function navbar() {
         alt=""
       />
     </a>
-
+   
     <div>Bag</div>
-    <span id = "cart-count-info">0</span>
+    
   </div>
+  <div id="google_translate_element"></div>
 </div>
+
 </header>`;
 }
 
