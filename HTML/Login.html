@@ -106,16 +106,16 @@
         alt=""
       />
       <div class="forms">
-        <div class="form login">
+        <div class="form login add-modal">
           <span class="title">Login</span>
 
-          <form>
-            <div class="input-field">
-              <input type="text" placeholder="Email" id="email" />
+          <form id="sgnInForm" class="formcard">
+            <div class="input-field form-group">
+              <input type="text" class="form-control" placeholder="Email" id="email" />
               <i class="uil uil-envelope icon"></i>
             </div>
-            <div class="input-field">
-              <input type="password" id="password" placeholder="Password" />
+            <div class="input-field form-group">
+              <input type="password" class="password form-control" id="password" placeholder="Password" />
               <i class="uil uil-lock icon"></i>
               <i class="uil uil-eye-slash showHidePw"></i>
             </div>
@@ -129,9 +129,9 @@
               <a href="registration.html" class="text">Forgot password?</a>
             </div>
 
-            <div class="input-field button">
-              <input type="button" value="Login" id="login_btn" />
-            </div>
+            <button class="input-field button btn-add">
+              Sign in
+             </button>
           </form>
 
           <div class="login-signup">
@@ -143,6 +143,16 @@
         </div>
       </div>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="../JS/firebase.js"></script>
     <script src="../JS/Login.js"></script>
