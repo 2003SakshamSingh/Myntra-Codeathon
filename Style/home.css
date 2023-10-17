@@ -142,38 +142,38 @@
   background: gray;
 }
 
-#radio1:checked ~ .first1 {
+#radio1:checked ~ .first {
   margin-left: 0;
 }
-#radio6:checked ~ .first2 {
+#radio6:checked ~ .first {
   margin-left: 0;
 }
 
-#radio2:checked ~ .first1 {
+#radio2:checked ~ .first {
   margin-left: -20%;
 }
-#radio7:checked ~ .first2 {
+#radio7:checked ~ .first {
   margin-left: -20%;
 }
 
-#radio3:checked ~ .first1 {
+#radio3:checked ~ .first {
   margin-left: -40%;
 }
-#radio8:checked ~ .first2 {
+#radio8:checked ~ .first {
   margin-left: -40%;
 }
 
-#radio4:checked ~ .first1 {
+#radio4:checked ~ .first {
   margin-left: -60%;
 }
-#radio9:checked ~ .first2 {
+#radio9:checked ~ .first {
   margin-left: -60%;
 }
 
-#radio5:checked ~ .first1 {
+#radio5:checked ~ .first {
   margin-left: -80%;
 }
-#radio10:checked ~ .first2 {
+#radio10:checked ~ .first {
   margin-left: -80%;
 }
 /*css for automatic navigation*/
