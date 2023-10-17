@@ -1,4 +1,9 @@
-/* Body Part Css starts */
+/**
+ * Body Part Css starts
+ *
+ * @format
+ */
+
 .text-banner-title {
   text-transform: uppercase;
   color: #3e4152;
@@ -85,12 +90,18 @@
 /* Footer Css Ends */
 
 /* Image Slider CSS */
-.parent-slider{
+.parent-slider {
   display: flex;
   width: 100%;
 }
-.slider {
-  width: 50%;
+.slider1 {
+  width: 60%;
+  height: 500px;
+  overflow: hidden;
+  margin-top: 70px;
+}
+.slider2 {
+  width: 40%;
   height: 500px;
   overflow: hidden;
   margin-top: 70px;
@@ -119,9 +130,16 @@
 
 /*css for manual slide navigation*/
 
-.navigation-manual {
+.navigation-manual1 {
   position: absolute;
-  width: 50%;
+  width: 60%;
+  margin-top: -25px;
+  display: flex;
+  justify-content: center;
+}
+.navigation-manual2 {
+  position: absolute;
+  width: 40%;
   margin-top: -25px;
   display: flex;
   justify-content: center;
@@ -178,52 +196,61 @@
 }
 /*css for automatic navigation*/
 
-.navigation-auto {
+.navigation-auto1 {
   position: absolute;
   display: flex;
-  width: 50%;
+  width: 60%;
+  justify-content: center;
+  margin-top: 475px;
+}
+.navigation-auto2 {
+  position: absolute;
+  display: flex;
+  width: 40%;
   justify-content: center;
   margin-top: 475px;
 }
 
-.navigation-auto div {
+.navigation-auto1 div,
+.navigation-auto2 div {
   border: 3px solid rgba(211, 211, 211, 0.651);
   padding: 1.9px;
   border-radius: 10px;
   transition: 1s;
 }
 
-.navigation-auto div:not(:last-child) {
+.navigation-auto1 div:not(:last-child),
+.navigation-auto2 div:not(:last-child) {
   margin-right: 10px;
 }
 
-#radio1:checked ~ .navigation-auto .auto-btn1 {
+#radio1:checked ~ .navigation-auto1 .auto-btn1 {
   background: gray;
 }
-#radio2:checked ~ .navigation-auto .auto-btn2 {
+#radio2:checked ~ .navigation-auto1 .auto-btn2 {
   background: gray;
 }
-#radio3:checked ~ .navigation-auto .auto-btn3 {
+#radio3:checked ~ .navigation-auto1 .auto-btn3 {
   background: gray;
 }
-#radio4:checked ~ .navigation-auto .auto-btn4 {
+#radio4:checked ~ .navigation-auto1 .auto-btn4 {
   background: gray;
 }
-#radio5:checked ~ .navigation-auto .auto-btn5 {
+#radio5:checked ~ .navigation-auto1 .auto-btn5 {
   background: gray;
 }
-#radio6:checked ~ .navigation-auto .auto-btn6 {
+#radio6:checked ~ .navigation-auto2 .auto-btn6 {
   background: gray;
 }
-#radio7:checked ~ .navigation-auto .auto-btn7 {
+#radio7:checked ~ .navigation-auto2 .auto-btn7 {
   background: gray;
 }
-#radio8:checked ~ .navigation-auto .auto-btn8 {
+#radio8:checked ~ .navigation-auto2 .auto-btn8 {
   background: gray;
 }
-#radio9:checked ~ .navigation-auto .auto-btn9 {
+#radio9:checked ~ .navigation-auto2 .auto-btn9 {
   background: gray;
 }
-#radio10:checked ~ .navigation-auto .auto-btn10 {
+#radio10:checked ~ .navigation-auto2 .auto-btn10 {
   background: gray;
 }
