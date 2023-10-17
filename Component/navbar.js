@@ -1,3 +1,5 @@
+/** @format */
+
 function navbar() {
   return `<header class="header">
   <a style="margin-left: 27px;cursor:pointer;" href="../HTML/home.html" class="logo"><img src="../IMAGES/Logo/myntra.svg" alt=""></a>
@@ -549,6 +551,17 @@ function navbar() {
   </div>
 
   <div class="nav-last-2">
+    <a href="../HTML/communityForum.html">
+      <img
+        id="svg"
+        src="../IMAGES/Nav-Bar/chat.svg"
+        alt=""
+      />
+    </a>
+    <div>Global Chat</div>
+  </div>
+
+  <div class="nav-last-2">
     <a href="../HTML/WishList.html">
       <img
         id="svg"
@@ -556,9 +569,9 @@ function navbar() {
         alt=""
       />
     </a>
-
     <div>Wishlist</div>
   </div>
+
   <div class="nav-last-3">
     <a>
       <img
