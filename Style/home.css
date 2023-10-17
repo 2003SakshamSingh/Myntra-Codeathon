@@ -85,8 +85,12 @@
 /* Footer Css Ends */
 
 /* Image Slider CSS */
-.slider {
+.parent-slider{
+  display: flex;
   width: 100%;
+}
+.slider {
+  width: 50%;
   height: 500px;
   overflow: hidden;
   margin-top: 70px;
@@ -117,7 +121,7 @@
 
 .navigation-manual {
   position: absolute;
-  width: 100%;
+  width: 50%;
   margin-top: -25px;
   display: flex;
   justify-content: center;
@@ -138,22 +142,38 @@
   background: gray;
 }
 
-#radio1:checked ~ .first {
+#radio1:checked ~ .first1 {
+  margin-left: 0;
+}
+#radio6:checked ~ .first2 {
   margin-left: 0;
 }
 
-#radio2:checked ~ .first {
+#radio2:checked ~ .first1 {
+  margin-left: -20%;
+}
+#radio7:checked ~ .first2 {
   margin-left: -20%;
 }
 
-#radio3:checked ~ .first {
+#radio3:checked ~ .first1 {
+  margin-left: -40%;
+}
+#radio8:checked ~ .first2 {
   margin-left: -40%;
 }
 
-#radio4:checked ~ .first {
+#radio4:checked ~ .first1 {
   margin-left: -60%;
 }
-#radio5:checked ~ .first {
+#radio9:checked ~ .first2 {
+  margin-left: -60%;
+}
+
+#radio5:checked ~ .first1 {
+  margin-left: -80%;
+}
+#radio10:checked ~ .first2 {
   margin-left: -80%;
 }
 /*css for automatic navigation*/
@@ -161,13 +181,13 @@
 .navigation-auto {
   position: absolute;
   display: flex;
-  width: 100%;
+  width: 50%;
   justify-content: center;
   margin-top: 475px;
 }
 
 .navigation-auto div {
-  border: 2px solid rgba(211, 211, 211, 0.651);
+  border: 3px solid rgba(211, 211, 211, 0.651);
   padding: 1.9px;
   border-radius: 10px;
   transition: 1s;
@@ -180,18 +200,30 @@
 #radio1:checked ~ .navigation-auto .auto-btn1 {
   background: gray;
 }
-
 #radio2:checked ~ .navigation-auto .auto-btn2 {
   background: gray;
 }
-
 #radio3:checked ~ .navigation-auto .auto-btn3 {
   background: gray;
 }
-
 #radio4:checked ~ .navigation-auto .auto-btn4 {
   background: gray;
 }
 #radio5:checked ~ .navigation-auto .auto-btn5 {
+  background: gray;
+}
+#radio6:checked ~ .navigation-auto .auto-btn6 {
+  background: gray;
+}
+#radio7:checked ~ .navigation-auto .auto-btn7 {
+  background: gray;
+}
+#radio8:checked ~ .navigation-auto .auto-btn8 {
+  background: gray;
+}
+#radio9:checked ~ .navigation-auto .auto-btn9 {
+  background: gray;
+}
+#radio10:checked ~ .navigation-auto .auto-btn10 {
   background: gray;
 }

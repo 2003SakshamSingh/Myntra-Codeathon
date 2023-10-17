@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,68 +26,132 @@
 
     <main>
       <!-- slideshow carousel -->
-      <div class="slider">
-        <div class="slides">
-          <!--radio buttons start-->
-          <input type="radio" name="radio-btn" id="radio1" />
-          <input type="radio" name="radio-btn" id="radio2" />
-          <input type="radio" name="radio-btn" id="radio3" />
-          <input type="radio" name="radio-btn" id="radio4" />
-          <input type="radio" name="radio-btn" id="radio5" />
-          <!--radio buttons end-->
-          <!--slide images start-->
-          <div class="slide first">
-            <img
-              src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/2f6c8211-ac9e-4998-a4e8-bc16fea4cf2c1646124148372-HRX_Desk_Banner.jpg"
-              alt=""
-            />
+      <div class="parent-slider">
+        <div class="slider">
+          <div class="slides">
+            <!-- radio buttons start-->
+            <input type="radio" name="radio-btn1" id="radio1" />
+            <input type="radio" name="radio-btn1" id="radio2" />
+            <input type="radio" name="radio-btn1" id="radio3" />
+            <input type="radio" name="radio-btn1" id="radio4" />
+            <input type="radio" name="radio-btn1" id="radio5" />
+            <!--radio buttons end -->
+            <!--slide images start-->
+            <div class="slide first1">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/2f6c8211-ac9e-4998-a4e8-bc16fea4cf2c1646124148372-HRX_Desk_Banner.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/391e3197-027d-4440-a0c4-b4e2d7ee494a1646139673447-H-N_Desk_Banner--3-.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/31200885-2552-4f5a-8a92-be464905ce181646151056720-MFH-Desktop-Banner-.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/349419f2-6b66-4b22-8135-f46c13104a4d1646060784174-Workwear-Collection_Dk.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2021/11/16/11cc5325-37c6-4490-9adb-6f09ccb2a0781637049244895-luxe-banner.jpg"
+                alt=""
+              />
+            </div>
+            <!--slide images end-->
+            <!--automatic navigation start-->
+            <div class="navigation-auto">
+              <div class="auto-btn1"></div>
+              <div class="auto-btn2"></div>
+              <div class="auto-btn3"></div>
+              <div class="auto-btn4"></div>
+              <div class="auto-btn5"></div>
+            </div>
+            <!--automatic navigation end-->
           </div>
-          <div class="slide">
-            <img
-              src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/391e3197-027d-4440-a0c4-b4e2d7ee494a1646139673447-H-N_Desk_Banner--3-.jpg"
-              alt=""
-            />
+          <!--manual navigation start-->
+          <div class="navigation-manual">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+            <label for="radio5" class="manual-btn"></label>
           </div>
-          <div class="slide">
-            <img
-              src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/31200885-2552-4f5a-8a92-be464905ce181646151056720-MFH-Desktop-Banner-.jpg"
-              alt=""
-            />
-          </div>
-          <div class="slide">
-            <img
-              src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/349419f2-6b66-4b22-8135-f46c13104a4d1646060784174-Workwear-Collection_Dk.jpg"
-              alt=""
-            />
-          </div>
-          <div class="slide">
-            <img
-              src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2021/11/16/11cc5325-37c6-4490-9adb-6f09ccb2a0781637049244895-luxe-banner.jpg"
-              alt=""
-            />
-          </div>
-          <!--slide images end-->
-          <!--automatic navigation start-->
-          <div class="navigation-auto">
-            <div class="auto-btn1"></div>
-            <div class="auto-btn2"></div>
-            <div class="auto-btn3"></div>
-            <div class="auto-btn4"></div>
-            <div class="auto-btn5"></div>
-          </div>
-          <!--automatic navigation end-->
+          <!--manual navigation end-->
         </div>
-        <!--manual navigation start-->
-        <div class="navigation-manual">
-          <label for="radio1" class="manual-btn"></label>
-          <label for="radio2" class="manual-btn"></label>
-          <label for="radio3" class="manual-btn"></label>
-          <label for="radio4" class="manual-btn"></label>
-          <label for="radio5" class="manual-btn"></label>
+        <div class="slider">
+          <div class="slides">
+            <!-- radio buttons start-->
+            <input type="radio" name="radio-btn2" id="radio6" />
+            <input type="radio" name="radio-btn2" id="radio7" />
+            <input type="radio" name="radio-btn2" id="radio8" />
+            <input type="radio" name="radio-btn2" id="radio9" />
+            <input type="radio" name="radio-btn2" id="radio10" />
+            <!--radio buttons end -->
+            <!--slide images start-->
+            <div class="slide first2">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/2f6c8211-ac9e-4998-a4e8-bc16fea4cf2c1646124148372-HRX_Desk_Banner.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/391e3197-027d-4440-a0c4-b4e2d7ee494a1646139673447-H-N_Desk_Banner--3-.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/3/1/31200885-2552-4f5a-8a92-be464905ce181646151056720-MFH-Desktop-Banner-.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/349419f2-6b66-4b22-8135-f46c13104a4d1646060784174-Workwear-Collection_Dk.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="https://assets.myntassets.com/f_webp,w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2021/11/16/11cc5325-37c6-4490-9adb-6f09ccb2a0781637049244895-luxe-banner.jpg"
+                alt=""
+              />
+            </div>
+            <!--slide images end-->
+            <!--automatic navigation start-->
+            <div class="navigation-auto">
+              <div class="auto-btn6"></div>
+              <div class="auto-btn7"></div>
+              <div class="auto-btn8"></div>
+              <div class="auto-btn9"></div>
+              <div class="auto-btn10"></div>
+            </div>
+            <!--automatic navigation end-->
+          </div>
+          <!--manual navigation start-->
+          <div class="navigation-manual">
+            <label for="radio6" class="manual-btn"></label>
+            <label for="radio7" class="manual-btn"></label>
+            <label for="radio8" class="manual-btn"></label>
+            <label for="radio9" class="manual-btn"></label>
+            <label for="radio10" class="manual-btn"></label>
+          </div>
+          <!--manual navigation end-->
         </div>
-        <!--manual navigation end-->
+
+        
       </div>
-      <!--image slider end-->
 
       <!-- Products-ShowCase -->
 
@@ -118,38 +184,6 @@
             alt=""
         /></a>
       </div>
-      <!-- ------------------- -->
-
-      <!-- 2.) FIRST PURCHASE SUCCESS STORIES -->
-      <div class="text-banner-container">
-        <h4 class="text-banner-title">FIRST PURCHASE SUCCESS STORIES</h4>
-      </div>
-
-      <div class="img-link-container-1">
-        <a href=""
-          ><img
-            src="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/8c8d79e1-9e43-4130-959c-2732eaed4cb71646061287312-Clinique.jpg"
-            alt=""
-        /></a>
-        <a href=""
-          ><img
-            src="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/5e35dfb8-0a19-4f5a-8cd9-7c2b648764e31646061287302-Neemli.jpg"
-            alt="" /></a
-        ><a href=""
-          ><img
-            src="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/5f9942e1-305c-4777-b81a-d272133e213e1646061304227-T-Shirts.jpg"
-            alt="" /></a
-        ><a href=""
-          ><img
-            src="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/f3ed5e09-f8c2-470c-8adf-cf71e644b2c41646061304203-Lingerie.jpg"
-            alt="" /></a
-        ><a href=""
-          ><img
-            src="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/28/860f160a-91dd-4bcd-b1e5-151f2d6ca3e91646061304219-Trendy-Western-Wear.jpg"
-            alt=""
-        /></a>
-      </div>
-      <!-- ------------------- -->
 
       <!-- BIGGEST DEALS ON TOP BRANDS -->
       <div class="text-banner-container">
@@ -634,17 +668,26 @@
 
       <!-- END OF FOOTER -->
     </main>
-    
+
     <script src="../JS/home.js" type="module"></script>
 
-     <!-- Translate functionalty -->
+    <!-- Translate functionalty -->
 
-     <script type="text/javascript">
+    <script type="text/javascript">
       function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en,',includedLanguages:'hi,en,bn,gu,kn,ml,mr,ta,te,ur,', }, 'google_translate_element');
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en,",
+            includedLanguages: "hi,en,bn,gu,kn,ml,mr,ta,te,ur,",
+          },
+          "google_translate_element"
+        );
       }
-      </script>
+    </script>
 
-      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
   </body>
 </html>
