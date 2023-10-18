@@ -303,53 +303,21 @@ body {
   padding-top: 5px;
   margin-left: 15px;  
 }
-.nav-last .nav-last-1:hover{
-  border-bottom: 3px solid #ee5f73;
-  padding-bottom: 55px;
-}
-.nav-last .nav-last-2:hover{
-  border-bottom: 3px solid #f26a10;
-  padding-bottom: 55px;
-}
-.nav-last .nav-last-3:hover{
+.nav-last .nav-last-element:hover{
   border-bottom: 3px solid #ff3f6c;
   padding-bottom: 55px;
 }
-.nav-last .nav-last-4:hover{
-  border-bottom: 3px solid #f2c210;
-  padding-bottom: 55px;
-}
 
-.nav-last .nav-last-1 h3{
+.nav-last .nav-last-element h3{
   color: #ee5f73;
 }
-.nav-last .nav-last-2 h3{
-  color: #f26a10;
-}
-.nav-last .nav-last-3 .local-option-1{
-  font-size: 14px;
-  padding: 5px;
-  color: #0db7af;
-}
-.nav-last .nav-last-3 h3{
-  padding-bottom: 15px;
-  color: #ff3f6c;
-}
-.nav-last .nav-last-3 b{
-  min-width: 120px;
-}
-.nav-last .nav-last-3 a{
-  justify-content: center;
-}
-.nav-last .nav-last-3 select{
+
+.nav-last .nav-last-element select{
   right: 0;
   border: none;
 }
-.nav-last .nav-last-4 h3{
-  color: #ff3f6c;
-}
-.nav-last .nav-last-4 a img{
-  width:52px;
+.nav-last .nav-last-element a img{
+  width: 52px;
   height: 42px;
 }
 

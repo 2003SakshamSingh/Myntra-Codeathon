@@ -1,5 +1,3 @@
-/** @format */
-
 function navbar() {
   return `<header class="header">
   <a style="margin-left: 27px;cursor:pointer;" href="../HTML/home.html" class="logo"><img src="../IMAGES/Logo/myntra.svg" alt=""></a>
@@ -520,7 +518,7 @@ function navbar() {
 </div>
 
 <div class="nav-last">
-  <div class="nav-last-1">
+  <div class="nav-last-element">
     <a href="">
       <img
         id="svg"
@@ -550,7 +548,7 @@ function navbar() {
     </div>
   </div>
 
-  <div class="nav-last-2">
+  <div class="nav-last-element">
     <a href="../HTML/communityForum.html">
       <img
         id="svg"
@@ -561,54 +559,35 @@ function navbar() {
     <div>Global Chat</div>
   </div>
 
-  <div class="nav-last-2">
+  <div class="nav-last-element">
     <a href="../HTML/WishList.html">
-      <img
-        id="svg"
-        src="https://www.svgrepo.com/show/14970/heart.svg"
-        alt=""
-      />
+    <img
+    id="svg"
+    src="https://www.svgrepo.com/show/14970/heart.svg"
+    alt=""
+    />
     </a>
     <div>Wishlist</div>
-  </div>
-
-  <div class="nav-last-3">
-    <a>
+    </div>
+    
+  <div class="nav-last-element">
+    <a href="../HTML/localHotSellers.html">
       <img
       id="svg"
       src="../IMAGES/Nav-Bar/black-friday-offer-sale.svg"
       alt=""
       />
     </a>
-    
-    <div class="dropdown">
-    <button class="dropbtn">Local Store</button>
-    <span id = "local-new">NEW</span>
-      <div class="dropdown-content">
-        <h3>Local Trending !</h3>
-
-        <p class="local-option-1">
-          <b>Local HOT Sellers</b> &nbsp&nbsp
-          <select name="category" id="category">
-            <option value="Footwear">Footwear</option>
-            <option value="Cosmetics">Cosmetics</option>
-            <option value="Grooming">Grooming</option>
-            <option value="Decor">Decor</option>
-          </select>
-        </p>
-
-
-
-      </div>
-    </div>
+    <div>Local Store</div>
   </div>
-  <div class="nav-last-4">
-    <a>
-    <img
-      id="svg"
-      src="../IMAGES/Nav-Bar/translate.svg"
-      alt=""
-    />
+
+  <div class="nav-last-element">
+    <a >
+      <img
+        id="svg"
+        src="../IMAGES/Nav-Bar/translate.svg"
+        alt=""
+      />
     </a>
     
     <div class="dropdown">
@@ -618,7 +597,7 @@ function navbar() {
     </div>
   </div>
 
-  <div class="nav-last-5">
+  <div class="nav-last-element">
     <a href="../HTML/cart.html">
       <img
         id="svg"
