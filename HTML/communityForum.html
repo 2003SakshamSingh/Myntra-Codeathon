@@ -1,13 +1,12 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Home and Living - Buy Interior Decoration Products and Accessories Online
-      in India
-    </title>
+    <title>Myntra - Community Forum</title>
     <link rel="icon" href="../IMAGES/Logo/myntra.svg" />
     <link
       rel="stylesheet"
@@ -17,13 +16,77 @@
     <link rel="stylesheet" href="../Style/navbar.css" />
     <link rel="stylesheet" href="../Style/footer.css" />
     <link rel="stylesheet" href="../Style/Home&Living.css" />
+    <link rel="stylesheet" href="../Style/communityForum.css" />
   </head>
   <body>
     <!-- Nav-Bar -->
 
     <header id="headportion"></header>
+    <div class="nav-padding"></div>
 
-    
+    <div class="title">
+      <h2>Welcome to Myntra's very own Community Forum !</h2>
+      <br />
+      <p>
+        Chat with different communities and groups <br />
+        Take suggestions, ask for reviews and much more ...
+      </p>
+    </div>
+
+    <br />
+
+    <!-- section buttons -->
+    <div class="container">
+
+      <div class="left">
+
+        <div class="switch">
+          <div class="comm" id="comm1">
+            <h2>Marwadi</h2>
+          </div>
+          <div class="comm" id="comm2">
+            <h2>Shadi</h2>
+          </div>
+          <div class="comm" id="comm3">
+            <h2>Bihar</h2>
+          </div>
+          <div class="comm" id="comm4">
+            <h2>Influencer</h2>
+          </div>
+          <div class="comm" id="comm5">
+            <h2>Family</h2>
+          </div>
+        </div>
+        
+        <div class="community-chat">
+          <h2>Community Chat</h2>
+          <h4 class="community-name" id="community-name">community-name</h4>
+          <input
+            type="text"
+            class="input-message"
+            id="global-message-input"
+            placeholder="Type your message..."
+          />
+          <button class="send-btn" onclick="">Send</button>
+        </div>
+        
+      </div>
+
+      <div class="right">
+        <div class="global-chat">
+          <h2>Global Chat</h2>
+          <input
+            type="text"
+            class="input-message"
+            id="global-message-input"
+            placeholder="Type your message..."
+          />
+          <input type="file" class="input-file" id="global-file-input" />
+          <button class="send-btn" onclick="">Send</button>
+        </div>
+      </div>
+
+    </div>
 
     <!-- Footer -->
     <footer id="footerEl"></footer>
@@ -32,10 +95,20 @@
 
     <script type="text/javascript">
       function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en,',includedLanguages:'hi,en,bn,gu,kn,ml,mr,ta,te,ur,', }, 'google_translate_element');
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en,",
+            includedLanguages: "hi,en,bn,gu,kn,ml,mr,ta,te,ur,",
+          },
+          "google_translate_element"
+        );
       }
-      </script>
-      
-      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </script>
+
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+    <script type="text/javascript" src="../JS/communityForum.js"></script>
   </body>
 </html>
