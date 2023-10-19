@@ -1,3 +1,5 @@
+
+
 function navbar() {
   return `<header class="header">
   <a style="margin-left: 27px;cursor:pointer;" href="../HTML/home.html" class="logo"><img src="../IMAGES/Logo/myntra.svg" alt=""></a>
@@ -527,26 +529,26 @@ function navbar() {
       />
     </a>
 
-    <div class="dropdown">
-      <button class="dropbtn">Profile</button>
-      <div class="dropdown-content">
-        <h3>Welcome</h3>
-        <p>To access account and mange orders</p>
-        <button class="btn-redirect"> <a href="../HTML/Registration.html" class="login-btn">LOGIN / SIGNUP</a> </button>
-        <hr class="hr1">
-        <a href="../HTML/cart.html">Orders</a>
-        <a href="../HTML/WishList.html">Wishlist</a>
-        <a href="#">Gift Cards</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Myntra Insider <span class="new">New</span></a>
-        <hr class="hr2">
-        <a href="#">Myntra Credit</a>
-        <a href="#">Coupons</a>
-        <a href="#">Saved Cards</a>
-        <a href="#">Saved Addresses</a>
-      </div>
+   <div class="dropdown">
+    <button class="dropbtn">Profile</button>
+    <div class="dropdown-content">
+      <h3>Welcome</h3>
+      <p>To access account and mange orders</p>
+      <button class="btn-redirect" id = "loginout">LOGIN / SIGNUP </button>
+      <hr class="hr1">
+      <a href="../HTML/cart.html">Orders</a>
+      <a href="../HTML/WishList.html">Wishlist</a>
+      <a href="#">Gift Cards</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Myntra Insider <span class="new">New</span></a>
+      <hr class="hr2">
+      <a href="#">Myntra Credit</a>
+      <a href="#">Coupons</a>
+      <a href="#">Saved Cards</a>
+      <a href="#">Saved Addresses</a>
     </div>
   </div>
+</div>
 
   <div class="nav-last-element">
     <a href="../HTML/communityForum.html">

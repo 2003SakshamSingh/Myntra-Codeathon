@@ -24,6 +24,33 @@ setInterval(function () {
   }
 }, 3000);
 
+const loginoutbtn = document.querySelector('#loginout');
+
+async function signout(){
+  await firebase.auth().signOut();
+  location.replace("Login.html");
+}
+
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    loginoutbtn.innerText = "SignOut";
+
+    loginoutbtn.addEventListener('click', signout);
+    
+
+    var uid = user.uid;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+
+
+    loginoutbtn.innerText = "Login/Register";
+    loginoutbtn.addEventListener('click', ()=>{location.replace("Login.html");})
+  }
+});
+
 const cartCountInfo = document.getElementById("cart-count-info");
 let count = JSON.parse(localStorage.getItem("cart"));
 cartCountInfo.textContent = count.length;

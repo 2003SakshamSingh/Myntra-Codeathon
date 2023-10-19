@@ -105,37 +105,51 @@
       />
       <div class="forms">
         <!-- Registration Form -->
-        <div class="form signup">
+        <div class="form signup  add-modal">
           <span class="title">Registration</span>
 
-          <form>
-            <div class="input-field">
-              <input type="text" placeholder="Create Username" id="user_name" />
+          <form id="signUpForm" class="formcard">
+            <div class="input-field form-group">
+              <input type="text" class="form-control" placeholder="Create Username" id="username" />
               <i class="uil uil-user"></i>
             </div>
-            <div class="input-field">
-              <input type="text" placeholder="Create Email" id="email" />
+            <div class="input-field form-group">
+              <input type="text"  class="form-control"  placeholder="Create Email" id="email" />
               <i class="uil uil-envelope icon"></i>
             </div>
-            <div class="input-field">
+            <div class="input-field form-group">
               <input
                 type="password"
-                class="password"
+                class="password form-control"
                 placeholder="Create password"
                 id="password"
               />
               <i class="uil uil-lock icon"></i>
             </div>
 
-            <div class="input-field button">
-              <input type="button" value="Register Now" class="login_btn" />
-            </div>
+            <button class="input-field button btn-add">
+             Sign in
+            </button>
           </form>
         </div>
       </div>
     </div>
 
-    <script src="../JS/Registration.js"></script>
+    
+    <!-- <script src="../JS/Registration.js"></script> -->
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script src="../JS/firebase.js"></script>
+  <script src="../JS/Registration.js"></script>
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en,',includedLanguages:'hi,en,bn,gu,kn,ml,mr,ta,te,ur,', }, 'google_translate_element');
@@ -144,4 +158,6 @@
       
       <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
+
+  
 </html>
