@@ -1,5 +1,7 @@
-body{
- background: linear-gradient(rgb(233, 193, 193), yellow, rgb(233, 193, 193));
+.container{
+ background: url("/IMAGES/Sample-Images/Desert\ Camel\ Silk\ Road\ Background\ Wallpaper\ Image\ For\ Free\ Download\ -\ Pngtree.jpeg");
+ background-repeat: no-repeat;
+ background-size: cover;
 }
 .nav-padding {
   padding-top: 80px;
@@ -9,58 +11,63 @@ body{
   text-align: center;
 }
 .title span{
-  background-color: white;
+  background-color: transparent;
   text-align: center;
-  color: #f16565;
+  color: #774b15;
   font-size: 45px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .localStoreImage{
   margin: auto;
   text-align: center;
 }
 .localStoreImage img{
-  max-height: 160px;
+  height: 180px;
   border: 4px #f16565 solid;
 }
 .small-title{
   text-align: center;
-  padding: 36px 0 0 0;
+  padding: 46px 0 20px 0;
 }
 .small-title span{
   text-align: center;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 h2 {
   text-align: center;
-  background-color: #ffffff;
+  background-color: #cc1111;
 }
 .row {
-  min-height: 40vh;
+  height: 35vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
-  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0);
   margin-left: 50px;
   margin-right: 50px;
 }
 .row .item {
   position: relative;
-  max-width: 24vw;
-  background-color: #ffffff;
+  width: 22vw;
+  height: 35vh;
+  text-align: center;
+}
+.row .item:hover{
+  transform: scale(1.15);
 }
 .row .item img {
-  width: 100%;
-  padding: 3px;
+  width: auto;
+  height: 35vh;
+  object-fit: contain;
 }
 .row .item span{
   background-color: white;
   position: absolute;
-  bottom: 70px;
-  left: 10px;
+  bottom: 20px;
+  left: 50px;
   font-size: 15px;
   box-shadow: 0 0 5px black, 0 0 10px white;
   border-radius: 4px;
@@ -68,6 +75,10 @@ h2 {
 }
 .row .item p{
   font-size: 12px;
+  background-color: white;
+}
+.row .item h3{
+  background-color: white;
 }
 .row .item p del{
   font-weight: 400;
@@ -78,19 +89,20 @@ h2 {
   color: rgb(255, 0, 0);
 }
 .row .item p b{
-  font-weight: 500;
+  font-weight: 700;
+  color: rgb(0, 181, 0);
 }
 .item img {
   width: 100%;
 }
 .explore-title{
   text-align: center;
-  padding: 36px 0 36px 0;
+  padding: 36px 0 76px 0;
 }
 .explore-title span{
   text-align: center;
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .explore{
   height: 20vh;
@@ -113,4 +125,13 @@ h2 {
   align-items: center;
   justify-content: center;
   border: 5px solid #ffffff;
+}
+.explore .explore-item:hover{
+  transform: scale(1.5);
+}
+.space{
+  height: 20vh;
+}
+.end-space{
+  height: 70vh;
 }
