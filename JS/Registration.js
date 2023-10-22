@@ -17,21 +17,27 @@ addModalForm.addEventListener('submit', e => {
    firebase
      .auth()
      .createUserWithEmailAndPassword(email, password)
-
-
-    db.collection('users').add({
-        username: addModalForm.username.value,
-        email: addModalForm.email.value,
-      
-    });
-    
-    
 });
-
 
 // changing the webpage on authorization
  firebase.auth().onAuthStateChanged((user) => {
    if (user) {
-     location.replace("home.html");
+     console.log(user);
+    firebase.firestore().collection('users').doc(user.uid).get().then(doc=>{
+      if(doc.exists){location.replace("home.html");}
+      else{
+        firebase.firestore().collection('users').doc(user.uid).set({
+          name: addModalForm.username.value,
+          email: addModalForm.email.value
+        })
+        .then(() => {
+          console.log(`Firestore document created for user: ${user.uid}`);
+          location.replace("home.html");
+        })
+        .catch((error) => {
+          console.error(`Error creating Firestore document: ${error}`);
+        });
+      }
+    });
    }
  })

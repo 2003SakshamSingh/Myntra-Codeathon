@@ -82,16 +82,16 @@
           <div class="popularPostsContainer">
               
           </div>
-          <div class="bottomDiv">
+          <form class="bottomDiv">
             <input
               type="text"
               class="input-message"
-              id="global-message-input"
+              id="postContent"
               placeholder="Type your message..."
             />
-            <input type="file" class="input-file" id="global-file-input" />
-            <button class="send-btn" onclick="">Send</button>
-          </div>
+            <!-- <input type="file" class="input-file" id="global-file-input" /> -->
+            <button class="send-btn addPostBtn">Send</button>
+          </form>
           
         </div>
       </div>
@@ -141,17 +141,88 @@
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
-      async function getUserDetails(uid) {
-      await this.db
-        .collection("users")
-        .doc(uid)
-        .get()
-        .then((doc) => {
-          let data = doc.data();
-          return data;
+  //     async function getUserDetails(uid) {
+  //     await db
+  //       .collection("users")
+  //       .doc(uid)
+  //       .get()
+  //       .then((doc) => {
+  //         let data = doc.data();
+  //         return data;
+  //     })
+  //     .catch ((error) => {
+  //       console.error("Error in getUserDetails:", error);
+  //     });
+  // }
+  let postForm = document.querySelector(".bottomDiv");
+  let addPostBtn = document.querySelector(".addPostBtn");
+  
+
+  postForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let postContent = document.getElementById("postContent").value;
+    console.log(postContent);
+    postContent = String(postContent);
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+          let userId = user.uid;
+          await createPopularPost("Fashion Freaks", postContent, userId);
+          location.reload();
+        }
+          else {
+                location.replace("Login.html");
+              }
+      });
+  });
+
+  // addPostBtn.onClick = function () {
+  //     firebase.auth().onAuthStateChanged(async (user) => {
+  //       if (user) {
+  //         let userId = user.uid;
+  //         await createPopularPost("Fashion Freaks", postContent.value, userId);
+  //         big();
+  //       }
+  //       else {
+  //               location.replace("Login.html");
+  //             }
+  //     });
+      
+  //   }
+
+  async function getUserDetails(uid) {
+  try {
+    const doc = await db.collection("users").doc(uid).get();
+    const data = doc.data();
+    return data;
+  } catch (error) {
+    // Handle any errors here, e.g., log the error or return a default value
+    console.error("Error in getUserDetails:", error);
+    return null; // You can return an appropriate value in case of an error
+  }
+}
+
+async function createPopularPost(community_name, content, uid) {
+    let userDetails = await getUserDetails(uid);
+    let userName = userDetails.name;
+    await db
+      .collection("popular_posts")
+      .add({
+        community_name: community_name,
+        sender_name: userName,
+        time: firebase.firestore.FieldValue.serverTimestamp(),
+        content: content,
+        upvotes: 0,
+        downvotes: 0,
+        uid: uid,
+        comments: [],
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
       });
   }
-
   
 
       async function getPopularPosts() {
@@ -185,26 +256,53 @@
 
     
 
-    async function addCommentsToPost(docId, uid, content) {
+  //   async function addCommentsToPost(docId, uid, content) {
 
-    let userDetails = await getUserDetails(uid);
+  //   let userDetails = await getUserDetails(uid);
     
-    let userName = userDetails.name;
-    await db
-      .collection("popular_posts")
-      .doc(docId)
-      .update({
-        comments: firebase.firestore.FieldValue.arrayUnion({
-          uid: uid,
-          name: userName,
-          content: content,
-          time: firebase.firestore.FieldValue.serverTimestamp(),
-        }),
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  //   let userName = userDetails.name;
+  //   // console.log(userName);
+  //   await db
+  //     .collection("popular_posts")
+  //     .doc(docId)
+  //     .update({
+  //       comments: firebase.firestore.FieldValue.arrayUnion({
+  //         uid: uid,
+  //         name: userName,
+  //         content: content,
+  //         time: firebase.firestore.FieldValue.serverTimestamp(),
+  //       }),
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }
+
+  async function addCommentsToPost(docId, uid, content) {
+  try {
+    // Get user details based on UID
+    const userDetails = await getUserDetails(uid);
+    const userName = userDetails.name;
+    console.log(docId);
+    // console.log(userName);
+    // Create a new comment object
+    const newComment = {
+      uid: uid,
+      name: userName,
+      content: content,
+      time: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+
+    // Update the "comments" array in the specified document
+    await db.collection("popular_posts").doc(docId).update({
+      comments: firebase.firestore.FieldValue.arrayUnion(newComment),
+    });
+
+    console.log("Comment added successfully");
+  } catch (error) {
+    console.error("Error adding comment:", error);
   }
+}
 
   async function upvotePost(docId, upvotes) {
     await this.db.collection("popular_posts").doc(docId).update({
@@ -219,8 +317,10 @@
     });
   }
 
-  
 
+    
+
+    
       getPopularPosts()
       .then((result)=>{
         console.log(result)
@@ -304,6 +404,89 @@
       .catch(err=>{
         console.log(err)
       });
+//       getPopularPosts()
+//       .then((result)=>{
+//         console.log(result)
+//         let popularPostsContainer = document.querySelector(".popularPostsContainer");
+//         for (let p of result)
+//         {
+//           let post = document.createElement("div");
+//           post.innerHTML = `<div class="userInfo">
+//     <h5><a href="#">${p.sender_name}</a><span class="communityName">${p.community_name}</span></h5>
+//   </div>
+  
+  
+  
+  
+//   <div class="postContent">
+//     ${p.content}
+//   </div>
+  
+//   <hr><span class="votes"><a href="#" class="upVote">Upvote ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote ${p.downvotes}</a></span>
+//   `;
+//           post.className = 'popularPost';
+//           popularPostsContainer.appendChild(post);
+//           let addCommentForm = document.createElement("form");
+//           addCommentForm.innerHTML = `<input class="addCommentContent" placeholder="Type your comment..."/>
+// <button class="addCommentBtn">Add Comment</button>`;
+//           addCommentForm.className = "addCommentForm";
+//           popularPostsContainer.appendChild(addCommentForm);
+//           addCommentForm.addEventListener('submit', e => {
+//             e.preventDefault();
+//             const commentContent = document.querySelector(".addCommentContent").value;
+//             // var user = firebase.auth().currentUser;
+//             firebase.auth().onAuthStateChanged((user) => {
+//               if (user) {
+//                 var uid = user.uid;
+//                 // console.log(uid);
+//                 // console.log(user.name);
+//                 var docId = p.doc_id;
+//                 // console.log(docId);
+//                 addCommentsToPost(docId, user.uid, commentContent);
+//                 location.replace("communityForum.html");
+//               }
+//               else {
+//                 location.replace("Login.html");
+//               }
+//             })
+//           })
+//           let commentsNumber = document.createElement("h5");
+//           if (p.comments.length === 0)
+//           {
+//             commentsNumber.innerText = "No comments yet";
+//           }
+//           else
+//           {
+//             if (p.comments.length === 1)
+//             {
+//               commentsNumber.innerText = p.comments.length + " comment :";
+//             }
+//             else
+//             {
+//               commentsNumber.innerText = p.comments.length + " comments :";
+//             }
+            
+//           }
+//           commentsNumber.className = "commentsNumber";
+//           popularPostsContainer.appendChild(commentsNumber);
+//           for (let c of p.comments)
+//           {
+//             let comment = document.createElement("div");
+//             comment.innerHTML = `<div class="userInfo">
+//             <h5><a href="#">${c.name}</a></h5>
+//             </div>
+//             <div class="commentContent">
+//               ${c.content}
+//             </div>`;
+//             comment.className = "comment";
+//             popularPostsContainer.appendChild(comment);
+//           }
+//         }
+        
+//       })
+//       .catch(err=>{
+//         console.log(err)
+//       });
 
 
     </script>
