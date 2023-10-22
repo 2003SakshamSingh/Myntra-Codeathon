@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Myntra - Community Forum</title>
     <link rel="icon" href="../IMAGES/Logo/myntra.svg" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- <style>
+      .bottomDiv {
+        position: absolute;
+        bottom: 0px;
+      }
+    </style> -->
     <link
       rel="stylesheet"
       type="text/css"
@@ -66,17 +73,26 @@
         </div>
       </div>
 
-      <div class="right">
-        <div class="global-chat">
-          <h2>Global Chat</h2>
-          <input
-            type="text"
-            class="input-message"
-            id="global-message-input"
-            placeholder="Type your message..."
-          />
-          <input type="file" class="input-file" id="global-file-input" />
-          <button class="send-btn" onclick="">Send</button>
+      <div class="right" style="overflow: hidden;">
+        <div class="global-chat" >
+          <div>
+            <h2>Global Chat</h2>
+          </div>
+          
+          <div class="popularPostsContainer">
+              
+          </div>
+          <div class="bottomDiv">
+            <input
+              type="text"
+              class="input-message"
+              id="global-message-input"
+              placeholder="Type your message..."
+            />
+            <input type="file" class="input-file" id="global-file-input" />
+            <button class="send-btn" onclick="">Send</button>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -102,6 +118,213 @@
       type="text/javascript"
       src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     ></script>
+    
     <script type="text/javascript" src="../JS/communityForum.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <!-- <script src="../JS/firebase.js"></script> -->
+    <script type="module">
+      
+      const firebaseConfig = {
+        apiKey: "AIzaSyD09nDzD73ieZzOvpLTj2H5nL9Ncrn9bVg",
+        authDomain: "myntra-codeathon.firebaseapp.com",
+        projectId: "myntra-codeathon",
+        storageBucket: "myntra-codeathon.appspot.com",
+        messagingSenderId: "796268558165",
+        appId: "1:796268558165:web:4dcc91ef4727dbeec0e1dc",
+        measurementId: "G-3N3QT2B8GB"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      async function getUserDetails(uid) {
+      await this.db
+        .collection("users")
+        .doc(uid)
+        .get()
+        .then((doc) => {
+          let data = doc.data();
+          return data;
+      });
+  }
+
+  
+
+      async function getPopularPosts() {
+      let response = [];
+      const collectionRef = db.collection("popular_posts");
+      await collectionRef
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            let docId = doc.id;
+            let docData = doc.data();
+            let docResponse = {
+              community_name: docData.community_name,
+              sender_name: docData.sender_name,
+              time: docData.time,
+              content: docData.content,
+              upvotes: docData.upvotes,
+              downvotes: docData.downvotes,
+              doc_id: docId,
+              uid: docData.uid,
+              comments: docData.comments,
+            };
+            response.push(docResponse);
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+        return response;
+    }
+
+    
+
+    async function addCommentsToPost(docId, uid, content) {
+
+    let userDetails = await getUserDetails(uid);
+    
+    let userName = userDetails.name;
+    await db
+      .collection("popular_posts")
+      .doc(docId)
+      .update({
+        comments: firebase.firestore.FieldValue.arrayUnion({
+          uid: uid,
+          name: userName,
+          content: content,
+          time: firebase.firestore.FieldValue.serverTimestamp(),
+        }),
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  async function upvotePost(docId, upvotes) {
+    await this.db.collection("popular_posts").doc(docId).update({
+      upvotes: ++upvotes,
+    });
+    
+  }
+
+  async function downvotePost(docId, downvotes) {
+    await this.db.collection("popular_posts").doc(docId).update({
+      downvotes: ++downvotes,
+    });
+  }
+
+  
+
+      getPopularPosts()
+      .then((result)=>{
+        console.log(result)
+        let popularPostsContainer = document.querySelector(".popularPostsContainer");
+        for (let p of result)
+        {
+          let post = document.createElement("div");
+          post.innerHTML = `<div class="userInfo">
+    <h5><a href="#">${p.sender_name}</a><span class="communityName">${p.community_name}</span></h5>
+  </div>
+  
+  
+  
+  
+  <div class="postContent">
+    ${p.content}
+  </div>
+  
+  <hr><span class="votes"><a href="#" class="upVote">Upvote ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote ${p.downvotes}</a></span>
+  `;
+          post.className = 'popularPost';
+          popularPostsContainer.appendChild(post);
+          let addCommentForm = document.createElement("form");
+          addCommentForm.innerHTML = `<input class="addCommentContent" placeholder="Type your comment..."/>
+<button class="addCommentBtn">Add Comment</button>`;
+          addCommentForm.className = "addCommentForm";
+          popularPostsContainer.appendChild(addCommentForm);
+          addCommentForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const commentContent = document.querySelector(".addCommentContent").value;
+            // var user = firebase.auth().currentUser;
+            firebase.auth().onAuthStateChanged((user) => {
+              if (user) {
+                var uid = user.uid;
+                // console.log(uid);
+                // console.log(user.name);
+                var docId = p.doc_id;
+                // console.log(docId);
+                addCommentsToPost(docId, user.uid, commentContent);
+                location.replace("communityForum.html");
+              }
+              else {
+                location.replace("Login.html");
+              }
+            })
+          })
+          let commentsNumber = document.createElement("h5");
+          if (p.comments.length === 0)
+          {
+            commentsNumber.innerText = "No comments yet";
+          }
+          else
+          {
+            if (p.comments.length === 1)
+            {
+              commentsNumber.innerText = p.comments.length + " comment :";
+            }
+            else
+            {
+              commentsNumber.innerText = p.comments.length + " comments :";
+            }
+            
+          }
+          commentsNumber.className = "commentsNumber";
+          popularPostsContainer.appendChild(commentsNumber);
+          for (let c of p.comments)
+          {
+            let comment = document.createElement("div");
+            comment.innerHTML = `<div class="userInfo">
+            <h5><a href="#">${c.name}</a></h5>
+            </div>
+            <div class="commentContent">
+              ${c.content}
+            </div>`;
+            comment.className = "comment";
+            popularPostsContainer.appendChild(comment);
+          }
+        }
+        
+      })
+      .catch(err=>{
+        console.log(err)
+      });
+
+
+    </script>
   </body>
 </html>
+
+<div>
+  <div class="userInfo">
+    <h5><a href="#">${p.sender_name}</a><span class="communityName">${p.community_name}</span></h5>
+  </div>
+  <hr>
+  <div class="postContent">
+    ${p.content}
+  </div>
+  <hr>
+
+</div>
+
+<!-- <span class="addComment"><button class="addCommentBtn">Add comment</button></span> -->
+
+<!-- <span class="voteIcons icon1"><i class="far fa-thumbs-up"></i></span><span class="voteIcons icon2"><i class="far fa-thumbs-down"></i></span> -->
+
+<input class="addCommentContent" placeholder="Type your comment..."/>
+<button class="addCommentBtn">Add Comment</button>

@@ -20,11 +20,14 @@ addModalForm.addEventListener('submit', e => {
 
 
     db.collection('users').add({
-        username: addModalForm.userName.value,
+        username: addModalForm.username.value,
         email: addModalForm.email.value,
       
     });
+    
+    
 });
+
 
 // changing the webpage on authorization
  firebase.auth().onAuthStateChanged((user) => {

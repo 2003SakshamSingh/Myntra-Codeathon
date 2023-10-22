@@ -1,21 +1,21 @@
-class Database {
-  db;
-  constructor() {
-    const firebaseConfig = {
-      apiKey: "AIzaSyD09nDzD73ieZzOvpLTj2H5nL9Ncrn9bVg",
-      authDomain: "myntra-codeathon.firebaseapp.com",
-      projectId: "myntra-codeathon",
-      storageBucket: "myntra-codeathon.appspot.com",
-      messagingSenderId: "796268558165",
-      appId: "1:796268558165:web:4dcc91ef4727dbeec0e1dc",
-      measurementId: "G-3N3QT2B8GB",
-    };
 
-    firebase.initializeApp(firebaseConfig);
-    this.db = firebase.firestore();
-  }
+  // db;
+  // constructor() {
+  //   const firebaseConfig = {
+  //     apiKey: "AIzaSyD09nDzD73ieZzOvpLTj2H5nL9Ncrn9bVg",
+  //     authDomain: "myntra-codeathon.firebaseapp.com",
+  //     projectId: "myntra-codeathon",
+  //     storageBucket: "myntra-codeathon.appspot.com",
+  //     messagingSenderId: "796268558165",
+  //     appId: "1:796268558165:web:4dcc91ef4727dbeec0e1dc",
+  //     measurementId: "G-3N3QT2B8GB",
+  //   };
 
-  async createUserDetails(uid, name,email) {
+  //   firebase.initializeApp(firebaseConfig);
+  //   this.db = firebase.firestore();
+  // }
+
+  async function createUserDetails(uid, name,email) {
     await this.db
       .collection("users")
       .doc(uid)
@@ -26,7 +26,7 @@ class Database {
       .catch((e) => console.error(e));
   }
 
-  async getUserDetails(uid) {
+  async function getUserDetails(uid) {
     await this.db
       .collection("users")
       .doc(uid)
@@ -37,7 +37,7 @@ class Database {
       });
   }
 
-  async createPopularPost(community_name, content, uid) {
+  async function createPopularPost(community_name, content, uid) {
     let userDetails = await this.getUserDetails(uid);
     let userName = userDetails.name;
     await this.db
@@ -60,7 +60,7 @@ class Database {
       });
   }
 
-  async getPopularPosts() {
+  async function getPopularPosts() {
     let response = [];
     const collectionRef = this.db.collection("popular_posts");
     await collectionRef
@@ -90,7 +90,7 @@ class Database {
   }
 
   // The option to update a post on frontend will appear only if the uid of user matches with the docData.uid, i.e the "uid" field present in the doc data
-  async updatePopularPost(docId, content) {
+  async function updatePopularPost(docId, content) {
     await this.db
       .collection("popular_posts")
       .doc(docId)
@@ -106,7 +106,7 @@ class Database {
   }
 
   // The option to delete a post on frontend will appear only if the uid of user matches with the docData.uid, i.e the "uid" field present in the doc data
-  async deletePopularPosts(docId) {
+  async function deletePopularPosts(docId) {
     await this.db
       .collection("popular_posts")
       .doc(docId)
@@ -119,7 +119,7 @@ class Database {
       });
   }
 
-  async addCommentsToPost(docId, uid, content) {
+  async function addCommentsToPost(docId, uid, content) {
     let userDetails = await this.getUserDetails(uid);
     let userName = userDetails.name;
     await this.db
@@ -138,13 +138,13 @@ class Database {
       });
   }
 
-  async upvotePost(docId, upvotes) {
+  async function upvotePost(docId, upvotes) {
     await this.db.collection("popular_posts").doc(docId).update({
       upvotes: ++upvotes,
     });
   }
 
-  async downvotePost(docId, downvotes) {
+  async function downvotePost(docId, downvotes) {
     await this.db.collection("popular_posts").doc(docId).update({
       downvotes: ++downvotes,
     });
@@ -158,7 +158,7 @@ class Database {
   
   */
 
-  async createGroup(uid, name) {
+  async function createGroup(uid, name) {
     await this.db
       .collection("groups")
       .where("name", "==", name)
@@ -181,7 +181,7 @@ class Database {
       });
   }
 
-  async getGroups() {
+  async function getGroups() {
     let response = [];
     const collectionRef = this.db.collection("groups");
     await collectionRef
@@ -205,7 +205,7 @@ class Database {
       });
   }
 
-  async getGroupPosts(docId) {
+  async function getGroupPosts(docId) {
     let response = [];
     const collectionRef = this.db
       .collection("groups")
@@ -237,7 +237,7 @@ class Database {
       });
   }
 
-  async createGroupPost(community_name, sender_name, content, uid, docId) {
+  async function createGroupPost(community_name, sender_name, content, uid, docId) {
     await this.db
       .collection("groups")
       .doc(docId)
@@ -260,7 +260,7 @@ class Database {
       });
   }
 
-  async updateGroupPost(docId, postdocId, content) {
+  async function updateGroupPost(docId, postdocId, content) {
     await this.db
       .collection("groups")
       .doc(docId)
@@ -277,7 +277,7 @@ class Database {
       });
   }
 
-  async deleteGroupPosts(docId, postdocId) {
+  async function deleteGroupPosts(docId, postdocId) {
     await this.db
       .collection("groups")
       .doc(docId)
@@ -292,7 +292,7 @@ class Database {
       });
   }
 
-  async addCommentsToGroupPost(docId, postdocId, uid, content) {
+  async function addCommentsToGroupPost(docId, postdocId, uid, content) {
     let userDetails = await this.getUserDetails(uid);
     let userName = userDetails.name;
     await this.db
@@ -313,7 +313,7 @@ class Database {
       });
   }
 
-  async upvoteGroupPost(docId, postdocId, upvotes) {
+  async function upvoteGroupPost(docId, postdocId, upvotes) {
     await this.db
       .collection("groups")
       .doc(docId)
@@ -324,7 +324,7 @@ class Database {
       });
   }
 
-  async downvoteGroupPost(docId, postdocId, downvotes) {
+  async function downvoteGroupPost(docId, postdocId, downvotes) {
     await this.db
       .collection("groups")
       .doc(docId)
@@ -334,4 +334,3 @@ class Database {
         downvotes: ++downvotes,
       });
   }
-}

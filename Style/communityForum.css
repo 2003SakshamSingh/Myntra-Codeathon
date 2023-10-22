@@ -81,7 +81,7 @@ body {
   height: 68vh;
   width: 40vw;
   padding: 10px;
-  overflow-y: auto;
+  overflow-y: hidden;
   border: 1px solid #ccc;
   /* margin-top: 10px;
   margin-left: 10px; */
@@ -116,4 +116,69 @@ body {
 
 .send-btn:hover {
   background-color: #ff544b;
+}
+
+.popularPostsContainer {
+  height: 210px;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 0.5em;
+  
+}
+
+.popularPost {
+  height: fit-content;
+  padding: 10px;
+  margin: 10px;
+  margin-left: 5px;
+  background-color: #e6dbdb;
+  border-radius: 0.5em;
+}
+
+.communityName {
+  margin-left: 50px;
+  margin-right: auto;
+}
+
+/* .voteIcons {
+  margin-top: 20px;
+  margin: 10px;
+}
+
+.icon1 {
+  margin-left: 375px;
+} */
+
+.postContent {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 15px;
+}
+
+.votes {
+  margin-top: 20px;
+  margin: 10px;
+  font-size: 14px;
+  
+}
+
+.upVote {
+  margin-left: 15em;
+}
+
+.addCommentForm {
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.commentsNumber {
+  margin-left: 1.5em;
+}
+
+.comment {
+  margin-left: 1.25em;
+  background-color: #f0eaea;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 0.5em;
 }
