@@ -165,7 +165,7 @@
       .get()
       .then(async (querySnapshot) => {
         if (querySnapshot.size > 0) {
-          return "failue";
+          return "failure";
         } else {
           await this.db
             .collection("groups")

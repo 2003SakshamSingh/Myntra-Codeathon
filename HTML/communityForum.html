@@ -42,8 +42,22 @@
     <!-- section buttons -->
     <div class="container">
       <div class="left">
-        <div class="switch">
-          <div class="comm" id="comm1">
+        <div class="switch" style="overflow-x: auto; overflow-y: hidden;">
+          <div class="comm addCommunity open-button" onclick="openForm()" id="addCommunity">
+            <i class="fas fa-plus fa-2xl"></i>
+          </div>
+          <div class="form-popup" id="myForm">
+            <form id="communityForm" class="form-container">
+              <h1>Create your Community</h1>
+              
+              <label for="community"><b>Community Name</b></label>
+              <input id="communityNameInput" type="text" placeholder="Enter Community Name" name="community" required>
+          
+              <button type="submit" class="btn">Create</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+          </div>
+          <!-- <div class="comm" id="comm1">
             <h2>Marwadi</h2>
           </div>
           <div class="comm" id="comm2">
@@ -57,19 +71,23 @@
           </div>
           <div class="comm" id="comm5">
             <h2>Family</h2>
-          </div>
+          </div> -->
         </div>
 
-        <div class="community-chat">
+        <div class="community-chat" style="overflow: hidden;">
           <h2>Community Chat</h2>
           <h4 class="community-name" id="community-name">community-name</h4>
-          <input
-            type="text"
-            class="input-message"
-            id="global-message-input"
-            placeholder="Type your message..."
-          />
-          <button class="send-btn" onclick="">Send</button>
+          <div class="communityPostsContainer"></div>
+          <form class="addCommunityPosts">
+            <input
+              type="text"
+              class="input-message"
+              id="postContent"
+              placeholder="Type your message..."
+            />
+            <!-- <input type="file" class="input-file" id="global-file-input" /> -->
+            <button class="send-btn addPostBtn">Send</button>
+          </form>
         </div>
       </div>
 
@@ -114,12 +132,23 @@
       }
     </script>
 
+      <script src="https://kit.fontawesome.com/e01365bc7d.js" crossorigin="anonymous"></script>
+
     <script
       type="text/javascript"
       src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     ></script>
     
     <script type="text/javascript" src="../JS/communityForum.js"></script>
+    <script>
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
+      
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }
+      </script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
@@ -156,6 +185,7 @@
   // }
   let postForm = document.querySelector(".bottomDiv");
   let addPostBtn = document.querySelector(".addPostBtn");
+  let communityForm = document.getElementById("communityForm");
   
 
   postForm.addEventListener('submit', e => {
@@ -174,6 +204,26 @@
               }
       });
   });
+
+  communityForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let communityNameInput = document.getElementById("communityNameInput").value;
+    communityNameInput = String(communityNameInput);
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+          let userId = user.uid;
+          await createGroup(userId, communityNameInput);
+          location.reload();
+        }
+          else {
+                location.replace("Login.html");
+              }
+      });
+  })
+
+  async function displayCommunityPosts() {
+    
+  }
 
   // addPostBtn.onClick = function () {
   //     firebase.auth().onAuthStateChanged(async (user) => {
@@ -201,6 +251,29 @@
   }
 }
 
+async function createGroup(uid, name) {
+    await db
+      .collection("groups")
+      .where("name", "==", name)
+      .get()
+      .then(async (querySnapshot) => {
+        if (querySnapshot.size > 0) {
+          return "failure";
+        } else {
+          await db
+            .collection("groups")
+            .add({
+              name: name,
+              admin_uid: uid,
+              time: firebase.firestore.FieldValue.serverTimestamp(),
+            })
+            .then(() => {
+              return "success";
+            });
+        }
+      });
+  }
+
 async function createPopularPost(community_name, content, uid) {
     let userDetails = await getUserDetails(uid);
     let userName = userDetails.name;
@@ -224,6 +297,64 @@ async function createPopularPost(community_name, content, uid) {
       });
   }
   
+
+  async function getGroups() {
+    let response = [];
+    const collectionRef = db.collection("groups");
+    await collectionRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let docId = doc.id;
+          let docData = doc.data();
+          let docResponse = {
+            name: docData.name,
+            admin_uid: docData.admin_uid,
+            time: docData.time,
+            doc_id: docId,
+          };
+          response.push(docResponse);
+        });
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      return response;
+  }
+
+  async function getGroupPosts(docId) {
+    let response = [];
+    const collectionRef = db
+      .collection("groups")
+      .doc(docId)
+      .collection("posts");
+    await collectionRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let docId = doc.id;
+          let docData = doc.data();
+          let docResponse = {
+            community_name: docData.community_name,
+            sender_name: docData.sender_name,
+            time: docData.time,
+            content: docData.content,
+            upvotes: docData.upvotes,
+            downvotes: docData.downvotes,
+            doc_id: docId,
+            uid: uid,
+            comments: docData.comments
+          };
+          response.push(docResponse);
+        });
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      return response;
+  }
 
       async function getPopularPosts() {
       let response = [];
@@ -318,6 +449,25 @@ async function createPopularPost(community_name, content, uid) {
   }
 
 
+  getGroups()
+  .then((result) => {
+    console.log(result);
+    let communityContainer = document.querySelector(".switch");
+    let count = 1;
+    for (let c of result)
+    {
+      let community = document.createElement("div");
+      community.innerHTML = `<h3>${c.name}</h3>`;
+      community.className = "comm commNames";
+      community.id = "comm"+count;
+      communityContainer.appendChild(community);
+      // console.log(community.id);
+      count++;
+    }
+  })
+  .catch(err => {
+    console.log(err);
+  });
     
 
     
