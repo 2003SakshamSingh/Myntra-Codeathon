@@ -1,9 +1,3 @@
-/**
- * Body Part Css starts
- *
- * @format
- */
-
 .text-banner-title {
   text-transform: uppercase;
   color: #3e4152;
@@ -120,12 +114,26 @@
 .slide {
   width: 20%;
   transition: 2s;
+  position: relative;
 }
 
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.slide .desc{
+  position: absolute;
+  bottom: 60%;
+  left: 10%;
+  width: 30%;
+  background-color: white;
+  border: 3px solid orange;
+  padding: 5px;
+  font-size: 0.75rem;
+  overflow-y: hidden;
+  box-shadow: 0 0 10px silver;
 }
 
 /*css for manual slide navigation*/
