@@ -1,5 +1,3 @@
-
-
 function navbar() {
   return `<header class="header">
   <a style="margin-left: 27px;cursor:pointer;" href="../HTML/home.html" class="logo"><img src="../IMAGES/Logo/myntra.svg" alt=""></a>
@@ -533,7 +531,7 @@ function navbar() {
     <button class="dropbtn">Profile</button>
     <div class="dropdown-content">
       <h3>Welcome</h3>
-      <p>To access account and mange orders</p>
+      <p>To access account and manage orders</p>
       <button class="btn-redirect" id = "loginout">LOGIN / SIGNUP </button>
       <hr class="hr1">
       <a href="../HTML/cart.html">Orders</a>
