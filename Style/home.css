@@ -114,12 +114,22 @@
 .slide {
   width: 20%;
   transition: 2s;
+  position: relative;
 }
 
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.slide .desc{
+  position: absolute;
+  bottom: 40%;
+  left: 10%;
+  width: 30%;
+  background-color: white;
+  border: 2px solid orange;
 }
 
 /*css for manual slide navigation*/
