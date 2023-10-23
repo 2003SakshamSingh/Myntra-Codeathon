@@ -281,8 +281,8 @@
 
 .dropdown-content {
   display: none;
-  position: fixed;
-  right: 50px;
+  position: absolute;
+  right: -50px;
   background-color: #fff;
   min-width: 240px;
   min-height: fit-content;
