@@ -573,7 +573,7 @@ function navbar() {
     </div>
     
   <div class="nav-last-element">
-    <a href="../HTML/localHotSellers.html">
+    <a href="../HTML/rajasthan.html">
       <img
       id="svg"
       src="../IMAGES/Nav-Bar/black-friday-offer-sale.svg"
