@@ -37,22 +37,22 @@ body {
 }
 .right{
   width: 40vw;
-  height: 70vh;
+  height: 71vh;
   background-color: transparent;
   padding: 0 0 10px 10px;
 }
 .switch{
-  display: flex;
-  align-items: center;
   width:100%;
-  height: 20vh;
-  justify-content: flex-start;
+  height: auto;
   /* background-color: #ffee00; */
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
 }
 .comm {
   height: 16vh;
-  width: 16vh;
+  min-width: 16vh;
   background-color: #f9a600;
   display: flex;
   align-items: center;
@@ -67,7 +67,6 @@ body {
   background-color: #000000;
   color: #f9a600;
 }
-
 .community-chat{
   height: 44vh;
   width: 100%;
@@ -77,38 +76,57 @@ body {
   border: 1px solid #ccc;
   margin-top: 10px;
   border-radius: 5px;
+  position: relative;
+}
+.community-chat h2, .community-chat h4{
+  color: white;
 }
 .global-chat{
-  height: 68vh;
-  width: 40vw;
-  padding: 10px;
+  height: 71vh;
+  padding: 5px 10px;
   overflow-y: hidden;
   border: 1px solid #ccc;
   border-radius: 5px;
+  position: relative;
   background: linear-gradient(90deg,#FF2F9D 0%,#FF5975 50%,#FF8F41 100%);
+}
+.global-chat h2{
+  color: white;
 }
 
 .addCommunityPosts{
   display: flex;
-  margin-top: 10px;
+  margin: 5px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 .addCommunityPosts input{
-  width: 190%;
+  width: calc(100% - 70px);
+
 }
 
 .bottomDiv{
   display: flex;
+  padding: 5px;
+  position: absolute;
+  bottom: 0 ;
+  left: 0;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-input#file-input-1 {
+input#file-input-1, input#file-input-2 {
   display: none;
 }
-#file-input-label-1{
+#file-input-label-1, #file-input-label-2{
   font-size: 35px;
   color: white;
   display: flex;
+  padding: 0;
   align-items: center;
-  padding: 0 3px;
+  padding: 0;
+  padding-right: 3px;
 }
 .input-message{
   border-radius: 5px;
@@ -132,11 +150,16 @@ input#file-input-1 {
 }
 
 .popularPostsContainer {
-  height: 210px;
+  height: 410px;
+  width: 100%;
   overflow-y: scroll;
-  background-color: white;
+  padding: 3px 0;
+  background-color: #e1b53f;
   border-radius: 0.5em;
-  
+}
+
+.bottomDiv input{
+  width: calc(100% - 70px);
 }
 
 .popularPost {
@@ -144,7 +167,7 @@ input#file-input-1 {
   padding: 10px;
   margin: 10px;
   margin-left: 5px;
-  background-color: #e6dbdb;
+  background-color: white;
   border-radius: 0.5em;
 }
 
@@ -177,6 +200,13 @@ input#file-input-1 {
 
 .upVote {
   margin-left: 15em;
+}
+.upVote img{
+  height: 14px;
+
+}
+.downVote img{
+  height: 14px;
 }
 
 .addCommentForm {
@@ -253,7 +283,7 @@ input#file-input-1 {
 .communityPostsContainer {
   height: 6em;
   overflow-y: scroll;
-  background-color: white;
+  background-color: #f5f5f5;
   border-radius: 0.5em;
   
 }
