@@ -1,8 +1,3 @@
-.container{
- background: url("/IMAGES/Sample-Images/Desert\ Camel\ Silk\ Road\ Background\ Wallpaper\ Image\ For\ Free\ Download\ -\ Pngtree.jpeg");
- background-repeat: no-repeat;
- background-size: cover;
-}
 .nav-padding {
   padding-top: 80px;
 }
@@ -114,7 +109,8 @@ h2 {
   padding: 10px;
   background-color: transparent;
 }
-.explore .explore-item{
+.explore .explore-item a{
+  text-decoration: none;
   height: 20vh;
   width: 20vh;
   border-radius: 50%;
