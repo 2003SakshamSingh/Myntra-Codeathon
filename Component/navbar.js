@@ -556,7 +556,7 @@ function navbar() {
         alt=""
       />
     </a>
-    <div>Global Chat</div>
+    <div>Influencia</div>
   </div>
 
   <div class="nav-last-element">
@@ -578,7 +578,7 @@ function navbar() {
       alt=""
       />
     </a>
-    <div>Local Store</div>
+    <div>Local Touch</div>
   </div>
 
   <div class="nav-last-element">
