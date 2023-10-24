@@ -94,14 +94,14 @@ body {
   color: white;
 }
 
-.addCommunityPosts{
+.addCommunityPostForm{
   display: flex;
   margin: 5px 0;
   position: absolute;
   bottom: 0;
   width: 100%;
 }
-.addCommunityPosts input{
+.addCommunityPostForm input{
   width: calc(100% - 70px);
 
 }
@@ -203,10 +203,12 @@ input#file-input-1, input#file-input-2 {
 }
 .upVote img{
   height: 14px;
+  margin-bottom: -2px;
 
 }
 .downVote img{
   height: 14px;
+  margin-bottom: -2px;
 }
 
 .addCommentForm {
@@ -281,7 +283,7 @@ input#file-input-1, input#file-input-2 {
 }
 
 .communityPostsContainer {
-  height: 6em;
+  height: 12em;
   overflow-y: scroll;
   background-color: #f5f5f5;
   border-radius: 0.5em;
