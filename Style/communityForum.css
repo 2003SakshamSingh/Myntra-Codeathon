@@ -244,3 +244,12 @@ body {
   border-radius: 0.5em;
   
 }
+
+.communityPost {
+  height: fit-content;
+  padding: 10px;
+  margin: 10px;
+  margin-left: 5px;
+  background-color: #e6dbdb;
+  border-radius: 0.5em;
+}

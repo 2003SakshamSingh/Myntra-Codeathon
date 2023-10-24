@@ -78,7 +78,7 @@
           <h2>Community Chat</h2>
           <h4 class="community-name" id="community-name">community-name</h4>
           <div class="communityPostsContainer"></div>
-          <form class="addCommunityPosts">
+          <form class="addCommunityPostForm">
             <input
               type="text"
               class="input-message"
@@ -86,7 +86,7 @@
               placeholder="Type your message..."
             />
             <!-- <input type="file" class="input-file" id="global-file-input" /> -->
-            <button class="send-btn addPostBtn">Send</button>
+            <button class="send-btn addCommunityPostBtn">Send</button>
           </form>
         </div>
       </div>
@@ -107,7 +107,7 @@
               id="postContent"
               placeholder="Type your message..."
             />
-            <!-- <input type="file" class="input-file" id="global-file-input" /> -->
+            <input type="file" class="input-file" id="global-file-input" />
             <button class="send-btn addPostBtn">Send</button>
           </form>
           
@@ -186,7 +186,30 @@
   let postForm = document.querySelector(".bottomDiv");
   let addPostBtn = document.querySelector(".addPostBtn");
   let communityForm = document.getElementById("communityForm");
+  let addCommunityPostForm = document.querySelector(".addCommunityPostForm");
   
+
+  addCommunityPostForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    console.log("HEEEEEELLLLLOO");
+    let communityName = document.getElementById("community-name").innerText;
+    let communityPostContent = document.getElementById("communityPostContent").value;
+    console.log(communityPostContent);
+    communityPostContent = String(communityPostContent);
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+          let userId = user.uid;
+          let userDetails = await getUserDetails(userId);
+          let userName = userDetails.name;
+          await createGroupPost(communityName, userName, communityPostContent, userId, communityName);
+          location.reload();
+        }
+          else {
+                location.replace("Login.html");
+              }
+      });
+  })
 
   postForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -221,10 +244,7 @@
       });
   })
 
-  async function displayCommunityPosts() {
-
-  }
-
+  
   // addPostBtn.onClick = function () {
   //     firebase.auth().onAuthStateChanged(async (user) => {
   //       if (user) {
@@ -262,17 +282,60 @@ async function createGroup(uid, name) {
         } else {
           await db
             .collection("groups")
-            .add({
+            .doc(name)
+            .set({
               name: name,
               admin_uid: uid,
               time: firebase.firestore.FieldValue.serverTimestamp(),
             })
-            .then(() => {
+            .then(async () => {
+              await db.collection("groups").doc(name).collection("posts").doc("dummy").set({}).then(()=>{db.collection("groups").doc(name).collection("posts").doc("dummy").delete()})
+              .catch((error) => {
+                console.log("Error creating group", error);
+              })
               return "success";
             });
         }
       });
   }
+  async function createGroupPost(community_name, sender_name, content, uid, docId) {
+  const collectionName = "groups"; // Replace with your actual collection name
+  const docRef = db.collection(collectionName).doc(docId);
+
+  try {
+    const doc = await docRef.get();
+    if (doc.exists) {
+      const data = doc.data();
+      const adminUid = data.admin_uid;
+
+      if (uid === adminUid) {
+        const postRef = await db
+          .collection("groups")
+          .doc(docId)
+          .collection("posts")
+          .add({
+            community_name: community_name,
+            sender_name: sender_name,
+            time: firebase.firestore.FieldValue.serverTimestamp(),
+            content: content,
+            upvotes: 0,
+            downvotes: 0,
+            uid: uid
+          });
+
+        console.log("Document written with ID: ", postRef.id);
+      } else {
+        alert("User does not have permission to create a group post.");
+      }
+    } else {
+      console.log("Document does not exist.");
+    }
+  } catch (error) {
+    console.error("Error creating group post:", error);
+    // Handle errors here
+  }
+}
+
 
 async function createPopularPost(community_name, content, uid) {
     let userDetails = await getUserDetails(uid);
@@ -323,6 +386,52 @@ async function createPopularPost(community_name, content, uid) {
       return response;
   }
 
+  async function loadGroupPosts(name) {
+    let communityName = document.getElementById("community-name");
+    let communityPostsContainer = document.querySelector(".communityPostsContainer");
+    communityName.innerText = name;
+    communityPostsContainer.innerHTML = "";
+    await getGroupPosts(name)
+    .then((result) =>
+    {
+      console.log(result);
+      
+      if (result.length > 0)
+      {
+        for (let p of result)
+        {
+          let post = document.createElement("div");
+          post.innerHTML = `<div class="userInfo">
+    <h5><a href="#">${p.sender_name}</a></h5>
+  </div>
+  
+  
+  
+  
+  <div class="postContent">
+    ${p.content}
+  </div>
+  
+  <hr><span class="votes"><a href="#" class="upVote">Upvote ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote ${p.downvotes}</a></span>
+  `;
+          post.className = 'communityPost';
+          communityPostsContainer.appendChild(post);
+          
+          
+        }
+      }
+      else{
+        communityPostsContainer.innerText = "No posts yet!!";
+      }
+        
+      
+      
+    })
+    .catch((error) => {
+      console.log("Error loading posts", error);
+    })
+  }
+
   async function getGroupPosts(docId) {
     let response = [];
     const collectionRef = db
@@ -343,8 +452,8 @@ async function createPopularPost(community_name, content, uid) {
             upvotes: docData.upvotes,
             downvotes: docData.downvotes,
             doc_id: docId,
-            uid: uid,
-            comments: docData.comments
+            uid: docData.uid,
+            // comments: docData.comments
           };
           response.push(docResponse);
         });
@@ -460,6 +569,9 @@ async function createPopularPost(community_name, content, uid) {
       community.innerHTML = `<h3>${c.name}</h3>`;
       community.className = "comm commNames";
       community.id = "comm"+count;
+      community.addEventListener('click', function() {
+        loadGroupPosts(community.innerText);
+      });
       communityContainer.appendChild(community);
       // console.log(community.id);
       count++;
