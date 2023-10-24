@@ -89,7 +89,7 @@
           <br />
           <h4 class="community-name" id="community-name">community-name</h4>
           <div class="communityPostsContainer"></div>
-          <form class="addCommunityPosts">
+          <form class="addCommunityPostForm">
             <input type="file" id="file-input-1" name="file-input-1" />
             <label id="file-input-label-1" for="file-input-1"> + </label>
             <input
@@ -99,7 +99,10 @@
               placeholder="Type your message..."
             />
             <button class="send-btn addPostBtn">
-              <img src="../IMAGES/Chat-Forum/send_icon.svg" alt="" />
+              <img
+                src="../IMAGES/Chat-Forum/send_icon.svg"
+                alt=""
+              />
             </button>
           </form>
         </div>
@@ -186,38 +189,63 @@
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
-      //     async function getUserDetails(uid) {
-      //     await db
-      //       .collection("users")
-      //       .doc(uid)
-      //       .get()
-      //       .then((doc) => {
-      //         let data = doc.data();
-      //         return data;
-      //     })
-      //     .catch ((error) => {
-      //       console.error("Error in getUserDetails:", error);
-      //     });
-      // }
-      let postForm = document.querySelector(".bottomDiv");
-      let addPostBtn = document.querySelector(".addPostBtn");
-      let communityForm = document.getElementById("communityForm");
+  //     async function getUserDetails(uid) {
+  //     await db
+  //       .collection("users")
+  //       .doc(uid)
+  //       .get()
+  //       .then((doc) => {
+  //         let data = doc.data();
+  //         return data;
+  //     })
+  //     .catch ((error) => {
+  //       console.error("Error in getUserDetails:", error);
+  //     });
+  // }
+  let postForm = document.querySelector(".bottomDiv");
+  let addPostBtn = document.querySelector(".addPostBtn");
+  let communityForm = document.getElementById("communityForm");
+  let addCommunityPostForm = document.querySelector(".addCommunityPostForm");
+  
 
-      postForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let postContent = document.getElementById("postContent").value;
-        console.log(postContent);
-        postContent = String(postContent);
-        firebase.auth().onAuthStateChanged(async (user) => {
-          if (user) {
-            let userId = user.uid;
-            await createPopularPost("Fashion Freaks", postContent, userId);
-            location.reload();
-          } else {
-            location.replace("Login.html");
-          }
-        });
+  addCommunityPostForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    console.log("HEEEEEELLLLLOO");
+    let communityName = document.getElementById("community-name").innerText;
+    let communityPostContent = document.getElementById("communityPostContent").value;
+    console.log(communityPostContent);
+    communityPostContent = String(communityPostContent);
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+          let userId = user.uid;
+          let userDetails = await getUserDetails(userId);
+          let userName = userDetails.name;
+          await createGroupPost(communityName, userName, communityPostContent, userId, communityName);
+          location.reload();
+        }
+          else {
+                location.replace("Login.html");
+              }
       });
+  })
+
+  postForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let postContent = document.getElementById("postContent").value;
+    console.log(postContent);
+    postContent = String(postContent);
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+          let userId = user.uid;
+          await createPopularPost("Fashion Freaks", postContent, userId);
+          location.reload();
+        }
+          else {
+                location.replace("Login.html");
+              }
+      });
+  });
 
       communityForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -235,21 +263,20 @@
         });
       });
 
-      async function displayCommunityPosts() {}
-
-      // addPostBtn.onClick = function () {
-      //     firebase.auth().onAuthStateChanged(async (user) => {
-      //       if (user) {
-      //         let userId = user.uid;
-      //         await createPopularPost("Fashion Freaks", postContent.value, userId);
-      //         big();
-      //       }
-      //       else {
-      //               location.replace("Login.html");
-      //             }
-      //     });
-
-      //   }
+  
+  // addPostBtn.onClick = function () {
+  //     firebase.auth().onAuthStateChanged(async (user) => {
+  //       if (user) {
+  //         let userId = user.uid;
+  //         await createPopularPost("Fashion Freaks", postContent.value, userId);
+  //         big();
+  //       }
+  //       else {
+  //               location.replace("Login.html");
+  //             }
+  //     });
+      
+  //   }
 
       async function getUserDetails(uid) {
         try {
@@ -263,28 +290,71 @@
         }
       }
 
-      async function createGroup(uid, name) {
-        await db
+async function createGroup(uid, name) {
+    await db
+      .collection("groups")
+      .where("name", "==", name)
+      .get()
+      .then(async (querySnapshot) => {
+        if (querySnapshot.size > 0) {
+          return "failure";
+        } else {
+          await db
+            .collection("groups")
+            .doc(name)
+            .set({
+              name: name,
+              admin_uid: uid,
+              time: firebase.firestore.FieldValue.serverTimestamp(),
+            })
+            .then(async () => {
+              await db.collection("groups").doc(name).collection("posts").doc("dummy").set({}).then(()=>{db.collection("groups").doc(name).collection("posts").doc("dummy").delete()})
+              .catch((error) => {
+                console.log("Error creating group", error);
+              })
+              return "success";
+            });
+        }
+      });
+  }
+  async function createGroupPost(community_name, sender_name, content, uid, docId) {
+  const collectionName = "groups"; // Replace with your actual collection name
+  const docRef = db.collection(collectionName).doc(docId);
+
+  try {
+    const doc = await docRef.get();
+    if (doc.exists) {
+      const data = doc.data();
+      const adminUid = data.admin_uid;
+
+      if (uid === adminUid) {
+        const postRef = await db
           .collection("groups")
-          .where("name", "==", name)
-          .get()
-          .then(async (querySnapshot) => {
-            if (querySnapshot.size > 0) {
-              return "failure";
-            } else {
-              await db
-                .collection("groups")
-                .add({
-                  name: name,
-                  admin_uid: uid,
-                  time: firebase.firestore.FieldValue.serverTimestamp(),
-                })
-                .then(() => {
-                  return "success";
-                });
-            }
+          .doc(docId)
+          .collection("posts")
+          .add({
+            community_name: community_name,
+            sender_name: sender_name,
+            time: firebase.firestore.FieldValue.serverTimestamp(),
+            content: content,
+            upvotes: 0,
+            downvotes: 0,
+            uid: uid
           });
+
+        console.log("Document written with ID: ", postRef.id);
+      } else {
+        alert("User does not have permission to create a group post.");
       }
+    } else {
+      console.log("Document does not exist.");
+    }
+  } catch (error) {
+    console.error("Error creating group post:", error);
+    // Handle errors here
+  }
+}
+
 
       async function createPopularPost(community_name, content, uid) {
         let userDetails = await getUserDetails(uid);
@@ -309,61 +379,109 @@
           });
       }
 
-      async function getGroups() {
-        let response = [];
-        const collectionRef = db.collection("groups");
-        await collectionRef
-          .get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              let docId = doc.id;
-              let docData = doc.data();
-              let docResponse = {
-                name: docData.name,
-                admin_uid: docData.admin_uid,
-                time: docData.time,
-                doc_id: docId,
-              };
-              response.push(docResponse);
-            });
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-        return response;
-      }
+  async function getGroups() {
+    let response = [];
+    const collectionRef = db.collection("groups");
+    await collectionRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let docId = doc.id;
+          let docData = doc.data();
+          let docResponse = {
+            name: docData.name,
+            admin_uid: docData.admin_uid,
+            time: docData.time,
+            doc_id: docId,
+          };
+          response.push(docResponse);
+        });
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      return response;
+  }
 
-      async function getGroupPosts(docId) {
-        let response = [];
-        const collectionRef = db
-          .collection("groups")
-          .doc(docId)
-          .collection("posts");
-        await collectionRef
-          .get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              let docId = doc.id;
-              let docData = doc.data();
-              let docResponse = {
-                community_name: docData.community_name,
-                sender_name: docData.sender_name,
-                time: docData.time,
-                content: docData.content,
-                upvotes: docData.upvotes,
-                downvotes: docData.downvotes,
-                doc_id: docId,
-                uid: uid,
-                comments: docData.comments,
-              };
-              response.push(docResponse);
-            });
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-        return response;
+  async function loadGroupPosts(name) {
+    let communityName = document.getElementById("community-name");
+    let communityPostsContainer = document.querySelector(".communityPostsContainer");
+    communityName.innerText = name;
+    communityPostsContainer.innerHTML = "";
+    await getGroupPosts(name)
+    .then((result) =>
+    {
+      console.log(result);
+      
+      if (result.length > 0)
+      {
+        for (let p of result)
+        {
+          let post = document.createElement("div");
+          post.innerHTML = `<div class="userInfo">
+    <h5><a href="#">${p.sender_name}</a></h5>
+  </div>
+  
+  
+  
+  
+  <div class="postContent">
+    ${p.content}
+  </div>
+  
+  <hr><span class="votes"><a href="#" class="upVote">Upvote ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote ${p.downvotes}</a></span>
+  `;
+          post.className = 'communityPost';
+          communityPostsContainer.appendChild(post);
+          
+          
+        }
       }
+      else{
+        communityPostsContainer.innerText = "No posts yet!!";
+      }
+        
+      
+      
+    })
+    .catch((error) => {
+      console.log("Error loading posts", error);
+    })
+  }
+
+  async function getGroupPosts(docId) {
+    let response = [];
+    const collectionRef = db
+      .collection("groups")
+      .doc(docId)
+      .collection("posts");
+    await collectionRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let docId = doc.id;
+          let docData = doc.data();
+          let docResponse = {
+            community_name: docData.community_name,
+            sender_name: docData.sender_name,
+            time: docData.time,
+            content: docData.content,
+            upvotes: docData.upvotes,
+            downvotes: docData.downvotes,
+            doc_id: docId,
+            uid: docData.uid,
+            // comments: docData.comments
+          };
+          response.push(docResponse);
+        });
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      return response;
+  }
 
       async function getPopularPosts() {
         let response = [];
@@ -451,11 +569,8 @@
         });
       }
 
-      async function downvotePost(docId, downvotes) {
-        await this.db.collection("popular_posts").doc(docId).update({
-          downvotes: ++downvotes,
-        });
-      }
+     
+
 
       getGroups()
         .then((result) => {
@@ -467,7 +582,10 @@
             community.innerHTML = `<h3>${c.name}</h3>`;
             community.className = "comm commNames";
             community.id = "comm" + count;
-            communityContainer.appendChild(community);
+            community.addEventListener('click', function() {
+        loadGroupPosts(community.innerText);
+      });
+      communityContainer.appendChild(community);
             // console.log(community.id);
             count++;
           }
