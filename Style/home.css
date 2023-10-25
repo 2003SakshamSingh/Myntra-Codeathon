@@ -89,21 +89,21 @@
   width: 100%;
 }
 .slider1 {
-  width: 60%;
-  height: 500px;
+  width: 75%;
+  height: 60vh;
   overflow: hidden;
   margin-top: 70px;
 }
 .slider2 {
-  width: 40%;
-  height: 500px;
+  width: 25%;
+  height: 60vh;
   overflow: hidden;
   margin-top: 70px;
 }
 
 .slides {
   width: 500%;
-  height: 500px;
+  height: 60vh;
   display: flex;
 }
 
@@ -120,18 +120,20 @@
 .slide img {
   width: 100%;
   height: 100%;
+  padding: 3px;
   object-fit: contain;
 }
 
 .slide .desc{
   position: absolute;
-  bottom: 60%;
-  left: 10%;
+  top: 20%;
+  left: 5%;
   width: 30%;
+  max-height: 40%;
   background-color: white;
   border: 3px solid orange;
   padding: 5px;
-  font-size: 0.75rem;
+  font-size: 0.5rem;
   overflow-y: hidden;
   box-shadow: 0 0 10px silver;
 }
@@ -140,15 +142,13 @@
 
 .navigation-manual1 {
   position: absolute;
-  width: 60%;
-  margin-top: -25px;
+  width: 75%;
   display: flex;
   justify-content: center;
 }
 .navigation-manual2 {
   position: absolute;
-  width: 40%;
-  margin-top: -25px;
+  width: 25%;
   display: flex;
   justify-content: center;
 }
@@ -207,16 +207,16 @@
 .navigation-auto1 {
   position: absolute;
   display: flex;
-  width: 60%;
+  width: 75%;
   justify-content: center;
-  margin-top: 475px;
+  margin-top: 62vh;
 }
 .navigation-auto2 {
   position: absolute;
   display: flex;
-  width: 40%;
+  width: 25%;
   justify-content: center;
-  margin-top: 475px;
+  margin-top: 62vh;
 }
 
 .navigation-auto1 div,
