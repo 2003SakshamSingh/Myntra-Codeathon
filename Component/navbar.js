@@ -534,6 +534,7 @@ function navbar() {
       <p>To access account and manage orders</p>
       <button class="btn-redirect" id = "loginout">LOGIN / SIGNUP </button>
       <hr class="hr1">
+      <a href="../HTML/product.html">Products</a>
       <a href="../HTML/cart.html">Orders</a>
       <a href="../HTML/WishList.html">Wishlist</a>
       <a href="#">Gift Cards</a>

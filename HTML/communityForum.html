@@ -88,7 +88,7 @@
           <h2>Community Chat</h2>
           <br />
           <h4 class="community-name" id="community-name">community-name</h4>
-          <div class="communityPostsContainer"></div>
+          <div class="communityPostsContainer">Click on a Community to view its posts.</div>
           <form class="addCommunityPostForm">
             <input type="file" id="file-input-1" name="file-input-1" />
             <label id="file-input-label-1" for="file-input-1"> + </label>
@@ -232,7 +232,7 @@
 
   postForm.addEventListener('submit', e => {
     e.preventDefault();
-    let postContent = document.getElementById("postContent").value;
+    let postContent = document.getElementById("globalPostContent").value;
     console.log(postContent);
     postContent = String(postContent);
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -344,7 +344,7 @@ async function createGroup(uid, name) {
 
         console.log("Document written with ID: ", postRef.id);
       } else {
-        alert("User does not have permission to create a group post.");
+        alert("Only the Community admin can post messages !!");
       }
     } else {
       console.log("Document does not exist.");
@@ -430,7 +430,7 @@ async function createGroup(uid, name) {
     ${p.content}
   </div>
   
-  <hr><span class="votes"><a href="#" class="upVote">Upvote ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote ${p.downvotes}</a></span>
+  <hr><span class="votes"><a href="#" class="upVote">Upvote <img src="../IMAGES/Chat-Forum/upvote.svg" alt="" /> ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote <img src="../IMAGES/Chat-Forum/downvote.svg" alt="" /> ${p.downvotes}</a></span>
   `;
           post.className = 'communityPost';
           communityPostsContainer.appendChild(post);
@@ -753,7 +753,7 @@ async function createGroup(uid, name) {
   </body>
 </html>
 
-<div>
+<!-- <div>
   <div class="userInfo">
     <h5>
       <a href="#">${p.sender_name}</a
@@ -765,9 +765,9 @@ async function createGroup(uid, name) {
   <hr />
 </div>
 
-<!-- <span class="addComment"><button class="addCommentBtn">Add comment</button></span> -->
+<span class="addComment"><button class="addCommentBtn">Add comment</button></span> -->
 
 <!-- <span class="voteIcons icon1"><i class="far fa-thumbs-up"></i></span><span class="voteIcons icon2"><i class="far fa-thumbs-down"></i></span> -->
 
-<input class="addCommentContent" placeholder="Type your comment..." />
-<button class="addCommentBtn">Add Comment</button>
+<!-- <input class="addCommentContent" placeholder="Type your comment..." />
+<button class="addCommentBtn">Add Comment</button> -->
