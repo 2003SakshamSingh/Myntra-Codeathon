@@ -64,6 +64,8 @@ body {
   padding: 2vh;
   color: #f16565;
   background-color: white;
+  font-size: 0.75rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
   text-align: center;
