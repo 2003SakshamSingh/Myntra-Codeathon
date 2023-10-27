@@ -171,6 +171,69 @@
             </button>
           </form>
         </div>
+        <div class="switch">
+          <div
+            class="comm addCommunity open-button"
+            onclick="openForm()"
+            id="addCommunity"
+          >
+            <i class="fas fa-plus fa-2xl"></i>
+          </div>
+          <div class="form-popup" id="myForm">
+            <form id="communityForm" class="form-container">
+              <h1>Create your Community</h1>
+              <hr />
+              <label for="community"><b>Community Name</b></label>
+              <input
+                id="communityNameInput"
+                type="text"
+                placeholder="Enter Community Name"
+                name="community"
+                required
+              />
+
+              <button type="submit" class="btn">Create</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">
+                Close
+              </button>
+            </form>
+          </div>
+          <!-- <div class="comm" id="comm1">
+            <h2>Marwadi</h2>
+          </div>
+          <div class="comm" id="comm2">
+            <h2>Shadi</h2>
+          </div>
+          <div class="comm" id="comm3">
+            <h2>Bihar</h2>
+          </div>
+          <div class="comm" id="comm4">
+            <h2>Influencer</h2>
+          </div>
+          <div class="comm" id="comm5">
+            <h2>Family</h2>
+          </div> -->
+        </div>
+
+        <div class="community-chat" style="overflow: hidden">
+          <h2>Community Chat</h2>
+          <br />
+          <h4 class="community-name" id="community-name"></h4>
+          <div class="communityPostsContainer">Click on a Community to view its posts.</div>
+          <form class="addCommunityPostForm">
+            <input type="file" id="file-input-1" name="file-input-1" />
+            <label id="file-input-label-1" for="file-input-1"> + </label>
+            <input
+              type="text"
+              class="input-message"
+              id="communityPostContent"
+              placeholder="Type your message..."
+            />
+            <button class="send-btn addPostBtn">
+              <img src="../IMAGES/Chat-Forum/send_icon.svg" alt="" />
+            </button>
+          </form>
+        </div>
       </div>
 
       <div class="right" style="overflow: hidden">
