@@ -51,7 +51,7 @@
           <input type="radio" name="radio-btn1" id="radio5" />
           <!--radio buttons end -->
           <!--slide images start-->
-          <div class="slide">
+          <div class="slide first">
             <img src="../IMAGES/Sample-Images/Review1.jpg" alt="" />
             <div class="desc">
               It is awesome I was very happy after wearing this top in this
@@ -845,16 +845,7 @@
       //         console.log(err)
       //       });
     </script>
-    <script>
-      var slideCounter = 1;
-      setInterval(function () {
-        document.getElementById("radio" + slideCounter).checked = true;
-        slideCounter++;
-        if (slideCounter > 5) {
-          slideCounter = 1;
-        }
-      }, 4000);
-    </script>
+   
   </body>
 </html>
 
