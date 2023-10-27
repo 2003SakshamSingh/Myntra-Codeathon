@@ -150,7 +150,7 @@
   margin-left: -60%;
 }
 
-#radio5:checked ~ .first {
+#radio5:checked ~ .irst {
   margin-left: -80%;
 }
 /*css for automatic navigation*/
@@ -174,18 +174,18 @@
   margin-right: 10px;
 }
 
-#radio1:checked ~ .navigation-auto1 .auto-btn1 {
+#radio1:checked ~ .navigation-auto .auto-btn1 {
   background: gray;
 }
-#radio2:checked ~ .navigation-auto1 .auto-btn2 {
+#radio2:checked ~ .navigation-auto .auto-btn2 {
   background: gray;
 }
-#radio3:checked ~ .navigation-auto1 .auto-btn3 {
+#radio3:checked ~ .navigation-auto .auto-btn3 {
   background: gray;
 }
-#radio4:checked ~ .navigation-auto1 .auto-btn4 {
+#radio4:checked ~ .navigation-auto .auto-btn4 {
   background: gray;
 }
-#radio5:checked ~ .navigation-auto1 .auto-btn5 {
+#radio5:checked ~ .navigation-auto .auto-btn5 {
   background: gray;
 }

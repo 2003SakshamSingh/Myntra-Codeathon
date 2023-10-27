@@ -9,6 +9,152 @@ body {
   padding: 0;
 }
 
+/* Image Slider CSS */
+.fpss{
+  width: 100%;
+  display: flex;
+  max-height: 50vh;
+}
+.happy-customer{
+  width: 50%;
+  overflow: hidden;
+}
+.happy-customer img{
+  width: 100%;
+}
+.slider {
+  width: 50%;
+  overflow: hidden ;
+  /* overflow-x: scroll; */
+  object-fit: contain;
+  position: relative;
+}
+
+.slides {
+  width: 500%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slides input { 
+  display: none;
+}
+
+.slide {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: 2s ease-in-out;
+}
+
+.slide img {
+  max-width: 50%;
+  max-height: 40vh;
+  border-radius: 30% 0 10% 0;
+  object-fit: contain;
+}
+
+.slide .desc{
+  width: 40%;
+  height: fit-content;
+  border-radius: 10vh 0 5vh 0;
+  padding: 5vh;
+  color: #f16565;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 5px solid rgb(255, 217, 0);
+  box-shadow: 10px 20px 25px black;
+}
+
+/*css for manual slide navigation*/
+
+.navigation-manual {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: 2vh;
+}
+
+.manual-btn {
+  padding: 3.9px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.manual-btn:not(:last-child) {
+  margin-right: 10px;
+}
+
+.manual-btn:hover {
+  background: gray;
+}
+
+.manual-btn:checked {
+  background: gray;
+}
+
+#radio1:checked ~ .first {
+  margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+  margin-left: -20%;
+}
+
+#radio3:checked ~ .first {
+  margin-left: -40%;
+}
+
+#radio4:checked ~ .first {
+  margin-left: -60%;
+}
+
+#radio5:checked ~ .first {
+  margin-left: -80%;
+}
+/*css for automatic navigation*/
+
+.navigation-auto {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  bottom: 2vh;
+}
+
+.navigation-auto div {
+  border: 3px solid rgba(211, 211, 211, 0.651);
+  padding: 1.9px;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.navigation-auto div:not(:last-child) {
+  margin-right: 10px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+  background: gray;
+}
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+  background: gray;
+}
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+  background: gray;
+}
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+  background: gray;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5 {
+  background: gray;
+}
+
+/*  */
 .title{
   text-align: center;
 }
