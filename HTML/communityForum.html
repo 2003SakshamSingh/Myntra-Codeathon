@@ -36,6 +36,93 @@
     </div>
 
     <br />
+    <div class="fpss">
+      <div class="happy-customer">
+        <img src="../IMAGES/Sample-Images/Happy Customer.jpg" alt="" />
+      </div>
+      <!-- slider start -->
+      <div class="slider">
+        <div class="slides">
+          <!-- radio buttons start-->
+          <input type="radio" name="radio-btn1" id="radio1" />
+          <input type="radio" name="radio-btn1" id="radio2" />
+          <input type="radio" name="radio-btn1" id="radio3" />
+          <input type="radio" name="radio-btn1" id="radio4" />
+          <input type="radio" name="radio-btn1" id="radio5" />
+          <!--radio buttons end -->
+          <!--slide images start-->
+          <div class="slide">
+            <img src="../IMAGES/Sample-Images/Review1.jpg" alt="" />
+            <div class="desc">
+              It is awesome I was very happy after wearing this top in this
+              price the cloth quality is good especially it's neck design is
+              awesome.
+            </div>
+          </div>
+          <div class="slide">
+            <img src="../IMAGES/Sample-Images/Review2.png" alt="" />
+            <div class="desc">
+              Both the shirt and cap are essential additions to my wardrobe. The
+              shirt is comfortable and versatile, retaining its quality after
+              numerous washes. The cap offers excellent sun protection with a
+              stylish design and comfortable fit. These items are both reliable
+              and stylish, enhancing my overall clothing choices.
+            </div>
+          </div>
+          <div class="slide">
+            <img src="../IMAGES/Sample-Images/Review3.png" alt="" />
+            <div class="desc">
+              I'm thoroughly impressed with my trolley bag. It's not only
+              spacious but also incredibly durable, withstanding rough handling
+              during travels. The multiple compartments make organization a
+              breeze, and the wheels glide smoothly. Its stylish design is an
+              added bonus. This bag has truly made my trips hassle-free and
+              fashionable.
+            </div>
+          </div>
+          <div class="slide">
+            <img src="../IMAGES/Sample-Images/Review4.jpeg" alt="" />
+            <div class="desc">
+              The earrings I purchased are exquisite. They add a touch of
+              elegance to any outfit and are comfortable to wear all day. The
+              quality is apparent in their shine and sturdiness. The nightsuit
+              is incredibly comfortable. The fabric is soft against the skin,
+              and stylish, too, making bedtime feel like a luxurious experience.
+              Both items have exceeded my expectations.
+            </div>
+          </div>
+          <div class="slide">
+            <img src="../IMAGES/Sample-Images/Review5.jpeg" alt="" />
+            <div class="desc">
+              It is a stylish and versatile accessory. It boasts ample space for
+              essentials, sturdy construction, and a design that complements
+              various outfits. Its functionality and aesthetic make it an
+              excellent addition to my wardrobe.
+            </div>
+          </div>
+          <!--slide images end-->
+          <!--automatic navigation start-->
+          <div class="navigation-auto">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+            <div class="auto-btn5"></div>
+          </div>
+          <!--automatic navigation end-->
+        </div>
+        <!--manual navigation start-->
+        <div class="navigation-manual">
+          <label for="radio1" class="manual-btn"></label>
+          <label for="radio2" class="manual-btn"></label>
+          <label for="radio3" class="manual-btn"></label>
+          <label for="radio4" class="manual-btn"></label>
+          <label for="radio5" class="manual-btn"></label>
+        </div>
+        <!--manual navigation end-->
+      </div>
+      <!-- slider end -->
+    </div>
 
     <!-- section buttons -->
     <div class="container">
@@ -88,7 +175,9 @@
           <h2>Community Chat</h2>
           <br />
           <h4 class="community-name" id="community-name">community-name</h4>
-          <div class="communityPostsContainer">Click on a Community to view its posts.</div>
+          <div class="communityPostsContainer">
+            Click on a Community to view its posts.
+          </div>
           <form class="addCommunityPostForm">
             <input type="file" id="file-input-1" name="file-input-1" />
             <label id="file-input-label-1" for="file-input-1"> + </label>
@@ -99,10 +188,7 @@
               placeholder="Type your message..."
             />
             <button class="send-btn addPostBtn">
-              <img
-                src="../IMAGES/Chat-Forum/send_icon.svg"
-                alt=""
-              />
+              <img src="../IMAGES/Chat-Forum/send_icon.svg" alt="" />
             </button>
           </form>
         </div>
@@ -114,7 +200,7 @@
           <br />
 
           <div class="popularPostsContainer"></div>
-          
+
           <form class="bottomDiv">
             <input type="file" id="file-input-2" name="file-input-2" />
             <label id="file-input-label-2" for="file-input-2"> + </label>
@@ -189,63 +275,70 @@
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
-  //     async function getUserDetails(uid) {
-  //     await db
-  //       .collection("users")
-  //       .doc(uid)
-  //       .get()
-  //       .then((doc) => {
-  //         let data = doc.data();
-  //         return data;
-  //     })
-  //     .catch ((error) => {
-  //       console.error("Error in getUserDetails:", error);
-  //     });
-  // }
-  let postForm = document.querySelector(".bottomDiv");
-  let addPostBtn = document.querySelector(".addPostBtn");
-  let communityForm = document.getElementById("communityForm");
-  let addCommunityPostForm = document.querySelector(".addCommunityPostForm");
-  
+      //     async function getUserDetails(uid) {
+      //     await db
+      //       .collection("users")
+      //       .doc(uid)
+      //       .get()
+      //       .then((doc) => {
+      //         let data = doc.data();
+      //         return data;
+      //     })
+      //     .catch ((error) => {
+      //       console.error("Error in getUserDetails:", error);
+      //     });
+      // }
+      let postForm = document.querySelector(".bottomDiv");
+      let addPostBtn = document.querySelector(".addPostBtn");
+      let communityForm = document.getElementById("communityForm");
+      let addCommunityPostForm = document.querySelector(
+        ".addCommunityPostForm"
+      );
 
-  addCommunityPostForm.addEventListener('submit', e => {
-    e.preventDefault();
+      addCommunityPostForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-    console.log("HEEEEEELLLLLOO");
-    let communityName = document.getElementById("community-name").innerText;
-    let communityPostContent = document.getElementById("communityPostContent").value;
-    console.log(communityPostContent);
-    communityPostContent = String(communityPostContent);
-    firebase.auth().onAuthStateChanged(async (user) => {
-        if (user) {
-          let userId = user.uid;
-          let userDetails = await getUserDetails(userId);
-          let userName = userDetails.name;
-          await createGroupPost(communityName, userName, communityPostContent, userId, communityName);
-          location.reload();
-        }
-          else {
-                location.replace("Login.html");
-              }
+        console.log("HEEEEEELLLLLOO");
+        let communityName = document.getElementById("community-name").innerText;
+        let communityPostContent = document.getElementById(
+          "communityPostContent"
+        ).value;
+        console.log(communityPostContent);
+        communityPostContent = String(communityPostContent);
+        firebase.auth().onAuthStateChanged(async (user) => {
+          if (user) {
+            let userId = user.uid;
+            let userDetails = await getUserDetails(userId);
+            let userName = userDetails.name;
+            await createGroupPost(
+              communityName,
+              userName,
+              communityPostContent,
+              userId,
+              communityName
+            );
+            location.reload();
+          } else {
+            location.replace("Login.html");
+          }
+        });
       });
-  })
 
-  postForm.addEventListener('submit', e => {
-    e.preventDefault();
-    let postContent = document.getElementById("globalPostContent").value;
-    console.log(postContent);
-    postContent = String(postContent);
-    firebase.auth().onAuthStateChanged(async (user) => {
-        if (user) {
-          let userId = user.uid;
-          await createPopularPost("Fashion Freaks", postContent, userId);
-          location.reload();
-        }
-          else {
-                location.replace("Login.html");
-              }
+      postForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let postContent = document.getElementById("globalPostContent").value;
+        console.log(postContent);
+        postContent = String(postContent);
+        firebase.auth().onAuthStateChanged(async (user) => {
+          if (user) {
+            let userId = user.uid;
+            await createPopularPost("Fashion Freaks", postContent, userId);
+            location.reload();
+          } else {
+            location.replace("Login.html");
+          }
+        });
       });
-  });
 
       communityForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -263,20 +356,19 @@
         });
       });
 
-  
-  // addPostBtn.onClick = function () {
-  //     firebase.auth().onAuthStateChanged(async (user) => {
-  //       if (user) {
-  //         let userId = user.uid;
-  //         await createPopularPost("Fashion Freaks", postContent.value, userId);
-  //         big();
-  //       }
-  //       else {
-  //               location.replace("Login.html");
-  //             }
-  //     });
-      
-  //   }
+      // addPostBtn.onClick = function () {
+      //     firebase.auth().onAuthStateChanged(async (user) => {
+      //       if (user) {
+      //         let userId = user.uid;
+      //         await createPopularPost("Fashion Freaks", postContent.value, userId);
+      //         big();
+      //       }
+      //       else {
+      //               location.replace("Login.html");
+      //             }
+      //     });
+
+      //   }
 
       async function getUserDetails(uid) {
         try {
@@ -290,71 +382,88 @@
         }
       }
 
-async function createGroup(uid, name) {
-    await db
-      .collection("groups")
-      .where("name", "==", name)
-      .get()
-      .then(async (querySnapshot) => {
-        if (querySnapshot.size > 0) {
-          return "failure";
-        } else {
-          await db
-            .collection("groups")
-            .doc(name)
-            .set({
-              name: name,
-              admin_uid: uid,
-              time: firebase.firestore.FieldValue.serverTimestamp(),
-            })
-            .then(async () => {
-              await db.collection("groups").doc(name).collection("posts").doc("dummy").set({}).then(()=>{db.collection("groups").doc(name).collection("posts").doc("dummy").delete()})
-              .catch((error) => {
-                console.log("Error creating group", error);
-              })
-              return "success";
-            });
-        }
-      });
-  }
-  async function createGroupPost(community_name, sender_name, content, uid, docId) {
-  const collectionName = "groups"; // Replace with your actual collection name
-  const docRef = db.collection(collectionName).doc(docId);
-
-  try {
-    const doc = await docRef.get();
-    if (doc.exists) {
-      const data = doc.data();
-      const adminUid = data.admin_uid;
-
-      if (uid === adminUid) {
-        const postRef = await db
+      async function createGroup(uid, name) {
+        await db
           .collection("groups")
-          .doc(docId)
-          .collection("posts")
-          .add({
-            community_name: community_name,
-            sender_name: sender_name,
-            time: firebase.firestore.FieldValue.serverTimestamp(),
-            content: content,
-            upvotes: 0,
-            downvotes: 0,
-            uid: uid
+          .where("name", "==", name)
+          .get()
+          .then(async (querySnapshot) => {
+            if (querySnapshot.size > 0) {
+              return "failure";
+            } else {
+              await db
+                .collection("groups")
+                .doc(name)
+                .set({
+                  name: name,
+                  admin_uid: uid,
+                  time: firebase.firestore.FieldValue.serverTimestamp(),
+                })
+                .then(async () => {
+                  await db
+                    .collection("groups")
+                    .doc(name)
+                    .collection("posts")
+                    .doc("dummy")
+                    .set({})
+                    .then(() => {
+                      db.collection("groups")
+                        .doc(name)
+                        .collection("posts")
+                        .doc("dummy")
+                        .delete();
+                    })
+                    .catch((error) => {
+                      console.log("Error creating group", error);
+                    });
+                  return "success";
+                });
+            }
           });
-
-        console.log("Document written with ID: ", postRef.id);
-      } else {
-        alert("Only the Community admin can post messages !!");
       }
-    } else {
-      console.log("Document does not exist.");
-    }
-  } catch (error) {
-    console.error("Error creating group post:", error);
-    // Handle errors here
-  }
-}
+      async function createGroupPost(
+        community_name,
+        sender_name,
+        content,
+        uid,
+        docId
+      ) {
+        const collectionName = "groups"; // Replace with your actual collection name
+        const docRef = db.collection(collectionName).doc(docId);
 
+        try {
+          const doc = await docRef.get();
+          if (doc.exists) {
+            const data = doc.data();
+            const adminUid = data.admin_uid;
+
+            if (uid === adminUid) {
+              const postRef = await db
+                .collection("groups")
+                .doc(docId)
+                .collection("posts")
+                .add({
+                  community_name: community_name,
+                  sender_name: sender_name,
+                  time: firebase.firestore.FieldValue.serverTimestamp(),
+                  content: content,
+                  upvotes: 0,
+                  downvotes: 0,
+                  uid: uid,
+                });
+
+              console.log("Document written with ID: ", postRef.id);
+            } else {
+              alert("Only the Community admin can post messages !!");
+            }
+          } else {
+            console.log("Document does not exist.");
+          }
+        } catch (error) {
+          console.error("Error creating group post:", error);
+          // Handle errors here
+        }
+      }
 
       async function createPopularPost(community_name, content, uid) {
         let userDetails = await getUserDetails(uid);
@@ -379,47 +488,45 @@ async function createGroup(uid, name) {
           });
       }
 
-  async function getGroups() {
-    let response = [];
-    const collectionRef = db.collection("groups");
-    await collectionRef
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          let docId = doc.id;
-          let docData = doc.data();
-          let docResponse = {
-            name: docData.name,
-            admin_uid: docData.admin_uid,
-            time: docData.time,
-            doc_id: docId,
-          };
-          response.push(docResponse);
-        });
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      return response;
-  }
+      async function getGroups() {
+        let response = [];
+        const collectionRef = db.collection("groups");
+        await collectionRef
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              let docId = doc.id;
+              let docData = doc.data();
+              let docResponse = {
+                name: docData.name,
+                admin_uid: docData.admin_uid,
+                time: docData.time,
+                doc_id: docId,
+              };
+              response.push(docResponse);
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        return response;
+      }
 
-  async function loadGroupPosts(name) {
-    let communityName = document.getElementById("community-name");
-    let communityPostsContainer = document.querySelector(".communityPostsContainer");
-    communityName.innerText = name;
-    communityPostsContainer.innerHTML = "";
-    await getGroupPosts(name)
-    .then((result) =>
-    {
-      console.log(result);
-      
-      if (result.length > 0)
-      {
-        for (let p of result)
-        {
-          let post = document.createElement("div");
-          post.innerHTML = `<div class="userInfo">
+      async function loadGroupPosts(name) {
+        let communityName = document.getElementById("community-name");
+        let communityPostsContainer = document.querySelector(
+          ".communityPostsContainer"
+        );
+        communityName.innerText = name;
+        communityPostsContainer.innerHTML = "";
+        await getGroupPosts(name)
+          .then((result) => {
+            console.log(result);
+
+            if (result.length > 0) {
+              for (let p of result) {
+                let post = document.createElement("div");
+                post.innerHTML = `<div class="userInfo">
     <h5><a href="#">${p.sender_name}</a></h5>
   </div>
   
@@ -432,56 +539,49 @@ async function createGroup(uid, name) {
   
   <hr><span class="votes"><a href="#" class="upVote">Upvote <img src="../IMAGES/Chat-Forum/upvote.svg" alt="" /> ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote <img src="../IMAGES/Chat-Forum/downvote.svg" alt="" /> ${p.downvotes}</a></span>
   `;
-          post.className = 'communityPost';
-          communityPostsContainer.appendChild(post);
-          
-          
-        }
+                post.className = "communityPost";
+                communityPostsContainer.appendChild(post);
+              }
+            } else {
+              communityPostsContainer.innerText = "No posts yet!!";
+            }
+          })
+          .catch((error) => {
+            console.log("Error loading posts", error);
+          });
       }
-      else{
-        communityPostsContainer.innerText = "No posts yet!!";
-      }
-        
-      
-      
-    })
-    .catch((error) => {
-      console.log("Error loading posts", error);
-    })
-  }
 
-  async function getGroupPosts(docId) {
-    let response = [];
-    const collectionRef = db
-      .collection("groups")
-      .doc(docId)
-      .collection("posts");
-    await collectionRef
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          let docId = doc.id;
-          let docData = doc.data();
-          let docResponse = {
-            community_name: docData.community_name,
-            sender_name: docData.sender_name,
-            time: docData.time,
-            content: docData.content,
-            upvotes: docData.upvotes,
-            downvotes: docData.downvotes,
-            doc_id: docId,
-            uid: docData.uid,
-            // comments: docData.comments
-          };
-          response.push(docResponse);
-        });
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      return response;
-  }
+      async function getGroupPosts(docId) {
+        let response = [];
+        const collectionRef = db
+          .collection("groups")
+          .doc(docId)
+          .collection("posts");
+        await collectionRef
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              let docId = doc.id;
+              let docData = doc.data();
+              let docResponse = {
+                community_name: docData.community_name,
+                sender_name: docData.sender_name,
+                time: docData.time,
+                content: docData.content,
+                upvotes: docData.upvotes,
+                downvotes: docData.downvotes,
+                doc_id: docId,
+                uid: docData.uid,
+                // comments: docData.comments
+              };
+              response.push(docResponse);
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        return response;
+      }
 
       async function getPopularPosts() {
         let response = [];
@@ -569,9 +669,6 @@ async function createGroup(uid, name) {
         });
       }
 
-     
-
-
       getGroups()
         .then((result) => {
           console.log(result);
@@ -582,10 +679,10 @@ async function createGroup(uid, name) {
             community.innerHTML = `<h3>${c.name}</h3>`;
             community.className = "comm commNames";
             community.id = "comm" + count;
-            community.addEventListener('click', function() {
-        loadGroupPosts(community.innerText);
-      });
-      communityContainer.appendChild(community);
+            community.addEventListener("click", function () {
+              loadGroupPosts(community.innerText);
+            });
+            communityContainer.appendChild(community);
             // console.log(community.id);
             count++;
           }
@@ -749,6 +846,16 @@ async function createGroup(uid, name) {
       //       .catch(err=>{
       //         console.log(err)
       //       });
+    </script>
+    <script>
+      var slideCounter = 1;
+      setInterval(function () {
+        document.getElementById("radio" + slideCounter).checked = true;
+        slideCounter++;
+        if (slideCounter > 5) {
+          slideCounter = 1;
+        }
+      }, 4000);
     </script>
   </body>
 </html>
