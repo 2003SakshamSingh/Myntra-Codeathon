@@ -15,6 +15,7 @@ body {
   display: flex;
   height: 45vh;
   margin-bottom: 1vh;
+  align-items: center;
 }
 .happy-customer{
   width: 50%;
@@ -28,12 +29,14 @@ body {
   overflow: hidden;
   object-fit: contain;
   position: relative;
+  height: 45vh;
 }
 
 .slides {
   width: 500%;
   display: flex;
   align-items: center;
+  height: 45vh;
 }
 
 .slides input { 
@@ -46,6 +49,7 @@ body {
   align-items: center;
   justify-content: space-around;
   transition: 2s ease-out;
+  height: 42vh;
 }
 
 .slide img {
@@ -64,7 +68,7 @@ body {
   padding: 2vh;
   color: #f16565;
   background-color: white;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -79,7 +83,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  bottom: 1vh;
+  bottom: 0vh;
 }
 
 .manual-btn {
@@ -127,7 +131,7 @@ body {
   display: flex;
   width: 100%;
   justify-content: center;
-  bottom: 1vh;
+  bottom: 0vh;
 }
 
 .navigation-auto div {
