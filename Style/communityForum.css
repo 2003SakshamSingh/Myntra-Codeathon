@@ -543,23 +543,26 @@ input#file-input-1, input#file-input-2 {
   color: #fff;
   text-align: left;
   border-radius: 6px;
-  padding: 8px 0;
+  padding: 4px;
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
+  top: -3em;
+  left: 110%;
+  height: auto;
+  width: 16em;
 }
 
 /* Popup arrow */
 .sellerPopup .popuptext::after {
   content: "";
   position: absolute;
-  top: 100%;
-  left: 50%;
+  transform: rotate(-90deg);
+  top: 55%;
+  left: 0%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
+  font-size: 40px;
   border-color: #555 transparent transparent transparent;
 }
 
