@@ -108,24 +108,40 @@
     <!-- section buttons -->
     <div class="container">
       <div class="left">
-        <div class="switch">
+        <div class="switchSeller">
           <div
-            class="comm addCommunity open-button"
+            class="comm addSeller open-button"
             onclick="openForm()"
-            id="addCommunity"
+            id="addSeller"
           >
             <i class="fas fa-plus fa-2xl"></i>
           </div>
           <div class="form-popup" id="myForm">
-            <form id="communityForm" class="form-container">
-              <h1>Create your Community</h1>
+            <form id="sellerForm" class="form-container">
+              <h1>Register your Store</h1>
               <hr />
-              <label for="community"><b>Community Name</b></label>
+              <label for="seller"><b>Seller Name</b></label>
               <input
-                id="communityNameInput"
+                id="sellerNameInput"
                 type="text"
-                placeholder="Enter Community Name"
-                name="community"
+                placeholder="Enter seller Name"
+                name="seller"
+                required
+              />
+              <label for="seller"><b>Seller Address</b></label>
+              <input
+                id="sellerAddressInput"
+                type="text"
+                placeholder="Enter seller address"
+                name="seller"
+                required
+              />
+              <label for="seller"><b>Seller Description</b></label>
+              <input
+                id="sellerDescriptionInput"
+                type="text"
+                placeholder="Enter seller description"
+                name="seller"
                 required
               />
 
@@ -152,18 +168,19 @@
           </div> -->
         </div>
 
-        <div class="community-chat" style="overflow: hidden">
-          <h2>Community Chat</h2>
+        <div class="seller-chat" style="overflow: hidden">
+          <h2>Myni-Bazaar</h2>
           <br />
-          <h4 class="community-name" id="community-name"></h4>
-          <div class="communityPostsContainer">Click on a Community to view its posts.</div>
-          <form class="addCommunityPostForm">
+          <h4 class="seller-name" id="seller-name"></h4><h5 class="seller-details" id="seller-details"></h5>
+
+          <div class="sellerPostsContainer">Click on a Seller to view its posts.</div>
+          <form class="addSellerPostForm">
             <input type="file" id="file-input-1" name="file-input-1" />
             <label id="file-input-label-1" for="file-input-1"> + </label>
             <input
               type="text"
               class="input-message"
-              id="communityPostContent"
+              id="sellerPostContent"
               placeholder="Type your message..."
             />
             <button class="send-btn addPostBtn">
@@ -216,7 +233,7 @@
         </div>
 
         <div class="community-chat" style="overflow: hidden">
-          <h2>Community Chat</h2>
+          <h2>Influ-Hub</h2>
           <br />
           <h4 class="community-name" id="community-name"></h4>
           <div class="communityPostsContainer">Click on a Community to view its posts.</div>
@@ -296,6 +313,12 @@
       function closeForm() {
         document.getElementById("myForm").style.display = "none";
       }
+
+      // When the user clicks on <div>, open the popup
+      function sellerDetails() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+}
     </script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
@@ -333,9 +356,40 @@
       let postForm = document.querySelector(".bottomDiv");
       let addPostBtn = document.querySelector(".addPostBtn");
       let communityForm = document.getElementById("communityForm");
+      let sellerForm = document.getElementById("sellerForm");
       let addCommunityPostForm = document.querySelector(
         ".addCommunityPostForm"
       );
+      let addSellerPostForm = document.querySelector(".addSellerPostForm");
+
+      addSellerPostForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        console.log("HEEEEEELLLLLOO");
+        let sellerName = document.getElementById("seller-name").innerText;
+        let sellerPostContent = document.getElementById(
+          "sellerPostContent"
+        ).value;
+        console.log(sellerPostContent);
+        sellerPostContent = String(sellerPostContent);
+        firebase.auth().onAuthStateChanged(async (user) => {
+          if (user) {
+            let userId = user.uid;
+            let userDetails = await getUserDetails(userId);
+            let userName = userDetails.name;
+            await createSellerPost(
+              sellerName,
+              userName,
+              sellerPostContent,
+              userId,
+              sellerName
+            );
+            location.reload();
+          } else {
+            location.replace("Login.html");
+          }
+        });
+      });
 
       addCommunityPostForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -398,6 +452,26 @@
         });
       });
 
+      sellerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let sellerNameInput =
+          document.getElementById("sellerNameInput").value;
+          let sellerAddressInput = document.getElementById("sellerAddressInput").value;
+          let sellerDescriptionInput = document.getElementById("sellerDescriptionInput").value;
+        sellerNameInput = String(sellerNameInput);
+        sellerAddressInput = String(sellerAddressInput);
+        sellerDescriptionInput = String(sellerDescriptionInput);
+        firebase.auth().onAuthStateChanged(async (user) => {
+          if (user) {
+            let userId = user.uid;
+            await createSeller(userId, sellerNameInput, sellerAddressInput, sellerDescriptionInput);
+            location.reload();
+          } else {
+            location.replace("Login.html");
+          }
+        });
+      });
+
       // addPostBtn.onClick = function () {
       //     firebase.auth().onAuthStateChanged(async (user) => {
       //       if (user) {
@@ -415,6 +489,18 @@
       async function getUserDetails(uid) {
         try {
           const doc = await db.collection("users").doc(uid).get();
+          const data = doc.data();
+          return data;
+        } catch (error) {
+          // Handle any errors here, e.g., log the error or return a default value
+          console.error("Error in getUserDetails:", error);
+          return null; // You can return an appropriate value in case of an error
+        }
+      }
+
+      async function getSellerDetails(docId) {
+        try {
+          const doc = await db.collection("sellers").doc(docId).get();
           const data = doc.data();
           return data;
         } catch (error) {
@@ -463,6 +549,49 @@
             }
           });
       }
+
+      async function createSeller(uid, name, address, description) {
+        await db
+          .collection("sellers")
+          .where("name", "==", name)
+          .get()
+          .then(async (querySnapshot) => {
+            if (querySnapshot.size > 0) {
+              return "failure";
+            } else {
+              await db
+                .collection("sellers")
+                .doc(name)
+                .set({
+                  name: name,
+                  address: address,
+                  description: description,
+                  admin_uid: uid,
+                  time: firebase.firestore.FieldValue.serverTimestamp(),
+                })
+                .then(async () => {
+                  await db
+                    .collection("sellers")
+                    .doc(name)
+                    .collection("posts")
+                    .doc("dummy")
+                    .set({})
+                    .then(() => {
+                      db.collection("sellers")
+                        .doc(name)
+                        .collection("posts")
+                        .doc("dummy")
+                        .delete();
+                    })
+                    .catch((error) => {
+                      console.log("Error creating group", error);
+                    });
+                  return "success";
+                });
+            }
+          });
+      }
+
       async function createGroupPost(
         community_name,
         sender_name,
@@ -503,6 +632,50 @@
           }
         } catch (error) {
           console.error("Error creating group post:", error);
+          // Handle errors here
+        }
+      }
+
+      async function createSellerPost(
+        seller_name,
+        sender_name,
+        content,
+        uid,
+        docId
+      ) {
+        const collectionName = "sellers"; // Replace with your actual collection name
+        const docRef = db.collection(collectionName).doc(docId);
+
+        try {
+          const doc = await docRef.get();
+          if (doc.exists) {
+            const data = doc.data();
+            const adminUid = data.admin_uid;
+
+            if (uid === adminUid) {
+              const postRef = await db
+                .collection("sellers")
+                .doc(docId)
+                .collection("posts")
+                .add({
+                  seller_name: seller_name,
+                  sender_name: sender_name,
+                  time: firebase.firestore.FieldValue.serverTimestamp(),
+                  content: content,
+                  upvotes: 0,
+                  downvotes: 0,
+                  uid: uid,
+                });
+
+              console.log("Document written with ID: ", postRef.id);
+            } else {
+              alert("Only the Seller can post messages !!");
+            }
+          } else {
+            console.log("Document does not exist.");
+          }
+        } catch (error) {
+          console.error("Error creating seller post:", error);
           // Handle errors here
         }
       }
@@ -553,6 +726,55 @@
           });
         return response;
       }
+
+      async function getSellers() {
+        let response = [];
+        const collectionRef = db.collection("sellers");
+        await collectionRef
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              let docId = doc.id;
+              let docData = doc.data();
+              let docResponse = {
+                name: docData.name,
+                address: docData.address,
+                description: docData.description,
+                admin_uid: docData.admin_uid,
+                time: docData.time,
+                doc_id: docId,
+              };
+              response.push(docResponse);
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        return response;
+      }
+
+      getSellers()
+        .then((result) => {
+          console.log(result);
+          let sellerContainer = document.querySelector(".switchSeller");
+          let count = 1;
+          for (let s of result) {
+            // console.log(s.address);
+            let seller = document.createElement("div");
+            seller.innerHTML = `<h3>${s.name}</h3>`;
+            seller.className = "sell sellNames";
+            seller.id = "sell" + count;
+            seller.addEventListener("click", function () {
+              loadSellerPosts(seller.innerText);
+            });
+            sellerContainer.appendChild(seller);
+            // console.log(community.id);
+            count++;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
       async function loadGroupPosts(name) {
         let communityName = document.getElementById("community-name");
@@ -607,6 +829,85 @@
               let docData = doc.data();
               let docResponse = {
                 community_name: docData.community_name,
+                sender_name: docData.sender_name,
+                time: docData.time,
+                content: docData.content,
+                upvotes: docData.upvotes,
+                downvotes: docData.downvotes,
+                doc_id: docId,
+                uid: docData.uid,
+                // comments: docData.comments
+              };
+              response.push(docResponse);
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        return response;
+      }
+
+      async function loadSellerPosts(name) {
+        let sellerName = document.getElementById("seller-name");
+        let sellerDetails = document.getElementById("seller-details");
+        let sellerPostsContainer = document.querySelector(
+          ".sellerPostsContainer"
+        );
+        let sellerDet = await getSellerDetails(name);
+        console.log(sellerDet);
+        sellerDetails.innerHTML = `<div class="sellerPopup" onclick="sellerDetails()">View Seller Details
+  <span class="popuptext" id="myPopup"><p><b>Name: </b>${sellerDet.name}</p>
+        <p><b>Address: </b>${sellerDet.address}</p>
+        <p><b>Description: </b>${sellerDet.description}</p></span>
+</div>`;
+        sellerName.innerText = name;
+        sellerPostsContainer.innerHTML = "";
+        await getSellerPosts(name)
+          .then((result) => {
+            console.log(result);
+
+            if (result.length > 0) {
+              for (let p of result) {
+                let post = document.createElement("div");
+                post.innerHTML = `<div class="userInfo">
+    <h5><a href="#">${p.sender_name}</a></h5>
+  </div>
+  
+  
+  
+  
+  <div class="postContent">
+    ${p.content}
+  </div>
+  
+  <hr><span class="votes"><a href="#" class="upVote">Upvote <img src="../IMAGES/Chat-Forum/upvote.svg" alt="" /> ${p.upvotes}</a></span><span class="votes"><a href="#" class="downVote">Downvote <img src="../IMAGES/Chat-Forum/downvote.svg" alt="" /> ${p.downvotes}</a></span>
+  `;
+                post.className = "sellerPost";
+                sellerPostsContainer.appendChild(post);
+              }
+            } else {
+              sellerPostsContainer.innerText = "No posts yet!!";
+            }
+          })
+          .catch((error) => {
+            console.log("Error loading posts", error);
+          });
+      }
+
+      async function getSellerPosts(docId) {
+        let response = [];
+        const collectionRef = db
+          .collection("sellers")
+          .doc(docId)
+          .collection("posts");
+        await collectionRef
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              let docId = doc.id;
+              let docData = doc.data();
+              let docResponse = {
+                seller_name: docData.seller_name,
                 sender_name: docData.sender_name,
                 time: docData.time,
                 content: docData.content,

@@ -199,7 +199,29 @@ body {
   align-items: center;
   overflow-x: scroll;
 }
+.switchSeller {
+  width:100%;
+  height: auto;
+  /* background-color: #ffee00; */
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+}
 .comm {
+  height: 16vh;
+  min-width: 16vh;
+  background-color: #f9a600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 25px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: #ffffff;
+}
+.sell {
   height: 16vh;
   min-width: 16vh;
   background-color: #f9a600;
@@ -216,6 +238,10 @@ body {
   background-color: #000000;
   color: #f9a600;
 }
+.sell:hover {
+  background-color: #000000;
+  color: #f9a600;
+}
 .community-chat{
   height: 44vh;
   width: 100%;
@@ -227,7 +253,21 @@ body {
   border-radius: 5px;
   position: relative;
 }
+.seller-chat {
+  height: 44vh;
+  width: 100%;
+  background: linear-gradient(90deg,#FF2F9D 0%,#FF5975 50%,#FF8F41 100%);
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  border-radius: 5px;
+  position: relative;
+}
 .community-chat h2, .community-chat h4{
+  color: white;
+}
+.seller-chat h2, .community-chat h4 {
   color: white;
 }
 .global-chat{
@@ -250,9 +290,19 @@ body {
   bottom: 0;
   width: 100%;
 }
+.addSellerPostForm {
+  display: flex;
+  margin: 5px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 .addCommunityPostForm input{
   width: calc(100% - 70px);
 
+}
+.addSellerPostForm input {
+  width: calc(100% - 70px);
 }
 
 .bottomDiv{
@@ -324,6 +374,13 @@ input#file-input-1, input#file-input-2 {
   margin-left: 50px;
   margin-right: auto;
 }
+
+.sellerName {
+  margin-left: 50px;
+  margin-right: auto;
+}
+
+
 
 /* .voteIcons {
   margin-top: 20px;
@@ -440,6 +497,15 @@ input#file-input-1, input#file-input-2 {
   
 }
 
+.sellerPostsContainer {
+  height: 12em;
+  overflow-y: auto;
+  padding: 3px;
+  background-color: #f5f5f5;
+  border-radius: 0.5em;
+  
+}
+
 .communityPost {
   height: fit-content;
   padding: 10px;
@@ -447,4 +513,71 @@ input#file-input-1, input#file-input-2 {
   margin-left: 5px;
   background-color: #e6dbdb;
   border-radius: 0.5em;
+}
+
+.sellerPost {
+  height: fit-content;
+  padding: 10px;
+  margin: 10px;
+  margin-left: 5px;
+  background-color: #e6dbdb;
+  border-radius: 0.5em;
+}
+
+/* Popup container */
+.sellerPopup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.sellerPopup .popuptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.sellerPopup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.sellerPopup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.seller-details {
+  color: blue;
+  text-decoration: overline;
 }
