@@ -32,9 +32,15 @@ const displayData = () => {
     <img
       src="https://www.pngkey.com/png/full/894-8942242_blue-star-clipart-blue-star-clip-art-at.png"
     />
+
     <div class="separator">|</div>
     <span class="ratingCount">${product.count}k Rating</span>
     </div>
+
+    <div class="locationBasedCount">
+    <img src="../IMAGES/Sample-Images/location-pin.svg"> <span id="locationSellCount">2426</span>&nbsppeople near you bought this product in the last 6 months
+    </div>
+
     <hr>
     <div class="price"> Rs. ${product.price}    <span class="line-through">Rs. ${product.off_price}</span>     <span class="discount">(${product.discount}% OFF)</span>
     <div class="inclusiveTax">Inclusive of all taxes</div>

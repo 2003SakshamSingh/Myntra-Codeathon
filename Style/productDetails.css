@@ -273,6 +273,18 @@ hr {
   margin-right: 10px;
 }
 
+.locationBasedCount {
+  padding: 5px;
+  padding-top: 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.locationBasedCount img{
+  height: 32px;
+  margin-right: 5px;
+}
+
 .deliverOption {
   color: #282c3f;
   font-size: 16px;

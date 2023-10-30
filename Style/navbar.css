@@ -315,6 +315,9 @@ body {
   right: 0;
   border: none;
 }
+.nav-last .nav-last-element a{
+  position: relative;
+}
 .nav-last .nav-last-element a img{
   width: 52px;
   height: 42px;
@@ -348,7 +351,7 @@ body {
   background-color: #f5f5f6;
   outline: none;
 }
-
+/* NEW SUPERSCRIPT START */
 .menu-item-6 .sup-part {
   color: red;
   position: relative;
@@ -356,6 +359,35 @@ body {
   font-weight: 900;
   bottom: 8px;
 }
+
+.nav-last-element{
+  position: relative;
+}
+.nav-last-element2 .sup-part {
+  color: red;
+  position: absolute;
+  font-size: 9px;
+  font-weight: 900;
+  bottom: 100%;
+  right: 0%;
+}
+.nav-last-element4 .sup-part {
+  color: red;
+  position: absolute;
+  font-size: 9px;
+  font-weight: 900;
+  bottom: 100%;
+  right: 0%;
+}
+.nav-last-element5 .sup-part {
+  color: red;
+  position: absolute;
+  font-size: 9px;
+  font-weight: 900;
+  bottom: 100%;
+  right: -30%;
+}
+/* NEW SUPERSCRIPT end */
 
 .image-1 {
   display: block;

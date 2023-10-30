@@ -518,7 +518,7 @@ function navbar() {
 </div>
 
 <div class="nav-last">
-  <div class="nav-last-element">
+  <div class="nav-last-element nav-last-element1">
     <a href="">
       <img
         id="svg"
@@ -549,18 +549,19 @@ function navbar() {
   </div>
 </div>
 
-  <div class="nav-last-element">
+  <div class="nav-last-element nav-last-element2">
     <a href="../HTML/communityForum.html">
       <img
         id="svg"
         src="../IMAGES/Nav-Bar/chat.svg"
         alt=""
       />
+      <span class="sup-part">NEW</span>
     </a>
     <div>Influencia</div>
   </div>
 
-  <div class="nav-last-element">
+  <div class="nav-last-element nav-last-element3">
     <a href="../HTML/WishList.html">
     <img
     id="svg"
@@ -571,24 +572,26 @@ function navbar() {
     <div>Wishlist</div>
     </div>
     
-  <div class="nav-last-element">
+  <div class="nav-last-element nav-last-element4">
     <a href="../HTML/rajasthan.html">
       <img
       id="svg"
       src="../IMAGES/Nav-Bar/black-friday-offer-sale.svg"
       alt=""
       />
+      <span class="sup-part">NEW</span>
     </a>
     <div>Local Touch</div>
   </div>
 
-  <div class="nav-last-element">
+  <div class="nav-last-element nav-last-element5">
     <a >
       <img
         id="svg"
         src="../IMAGES/Nav-Bar/translate.svg"
         alt=""
       />
+      <span class="sup-part">NEW</span>
     </a>
     
     <div class="dropdown">
@@ -598,7 +601,7 @@ function navbar() {
     </div>
   </div>
 
-  <div class="nav-last-element">
+  <div class="nav-last-element nav-last-element6">
     <a href="../HTML/cart.html">
       <img
         id="svg"
