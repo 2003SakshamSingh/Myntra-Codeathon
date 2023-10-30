@@ -54,31 +54,50 @@
           <div class="slide first">
             <img src="../IMAGES/Sample-Images/Review1.jpg" alt="" />
             <div class="desc">
-              " It is awesome I was very happy after wearing this top in this price the cloth quality is good especially it's neck design is awesome. "
+              " It is awesome I was very happy after wearing this top in this
+              price the cloth quality is good especially it's neck design is
+              awesome. "
             </div>
           </div>
           <div class="slide">
             <img src="../IMAGES/Sample-Images/Review2.png" alt="" />
             <div class="desc">
-              " Both the shirt and cap are essential additions to my wardrobe. The shirt is comfortable and versatile, retaining its quality after numerous washes. The cap offers excellent sun protection with a stylish design and comfortable fit. These items are both reliable and stylish, enhancing my overall clothing choices. "
+              " Both the shirt and cap are essential additions to my wardrobe.
+              The shirt is comfortable and versatile, retaining its quality
+              after numerous washes. The cap offers excellent sun protection
+              with a stylish design and comfortable fit. These items are both
+              reliable and stylish, enhancing my overall clothing choices. "
             </div>
           </div>
           <div class="slide">
             <img src="../IMAGES/Sample-Images/Review3.png" alt="" />
             <div class="desc">
-              " I'm thoroughly impressed with my trolley bag. It's not only spacious but also incredibly durable, withstanding rough handling during travels. The multiple compartments make organization a breeze, and the wheels glide smoothly. Its stylish design is an added bonus. This bag has truly made my trips hassle-free and fashionable. "
+              " I'm thoroughly impressed with my trolley bag. It's not only
+              spacious but also incredibly durable, withstanding rough handling
+              during travels. The multiple compartments make organization a
+              breeze, and the wheels glide smoothly. Its stylish design is an
+              added bonus. This bag has truly made my trips hassle-free and
+              fashionable. "
             </div>
           </div>
           <div class="slide">
             <img src="../IMAGES/Sample-Images/Review4.jpeg" alt="" />
             <div class="desc">
-              " The earrings I purchased are exquisite. They add a touch of elegance to any outfit and are comfortable to wear all day. The quality is apparent in their shine and sturdiness. The nightsuit is incredibly comfortable. The fabric is soft against the skin, and stylish, too, making bedtime feel like a luxurious experience. Both items have exceeded my expectations. "
+              " The earrings I purchased are exquisite. They add a touch of
+              elegance to any outfit and are comfortable to wear all day. The
+              quality is apparent in their shine and sturdiness. The nightsuit
+              is incredibly comfortable. The fabric is soft against the skin,
+              and stylish, too, making bedtime feel like a luxurious experience.
+              Both items have exceeded my expectations. "
             </div>
           </div>
           <div class="slide">
             <img src="../IMAGES/Sample-Images/Review5.jpeg" alt="" />
             <div class="desc">
-              " It is a stylish and versatile accessory. It boasts ample space for essentials, sturdy construction, and a design that complements various outfits. Its functionality and aesthetic make it an excellent addition to my wardrobe. "
+              " It is a stylish and versatile accessory. It boasts ample space
+              for essentials, sturdy construction, and a design that complements
+              various outfits. Its functionality and aesthetic make it an
+              excellent addition to my wardrobe. "
             </div>
           </div>
           <!--slide images end-->
@@ -170,10 +189,12 @@
 
         <div class="seller-chat" style="overflow: hidden">
           <h2>Myni-Bazaar</h2>
-          <br />
-          <h4 class="seller-name" id="seller-name"></h4><h5 class="seller-details" id="seller-details"></h5>
+          <h4 class="seller-name" id="seller-name"></h4>
+          <h5 class="seller-details" id="seller-details"></h5>
 
-          <div class="sellerPostsContainer">Click on a Seller to view its posts.</div>
+          <div class="sellerPostsContainer">
+            Click on a Seller to view its posts.
+          </div>
           <form class="addSellerPostForm">
             <input type="file" id="file-input-1" name="file-input-1" />
             <label id="file-input-label-1" for="file-input-1"> + </label>
@@ -199,7 +220,6 @@
           <div class="form-popup2" id="myForm2">
             <form id="communityForm" class="form-container2">
               <h1>Create your Community</h1>
-              <hr />
               <label for="community"><b>Community Name</b></label>
               <input
                 id="communityNameInput"
@@ -236,7 +256,9 @@
           <h2>Influ-Hub</h2>
           <br />
           <h4 class="community-name" id="community-name"></h4>
-          <div class="communityPostsContainer">Click on a Community to view its posts.</div>
+          <div class="communityPostsContainer">
+            Click on a Community to view its posts.
+          </div>
           <form class="addCommunityPostForm">
             <input type="file" id="file-input-1" name="file-input-1" />
             <label id="file-input-label-1" for="file-input-1"> + </label>
@@ -326,7 +348,7 @@
       function sellerDetails() {
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
-}
+      }
     </script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
@@ -375,9 +397,8 @@
 
         console.log("HEEEEEELLLLLOO");
         let sellerName = document.getElementById("seller-name").innerText;
-        let sellerPostContent = document.getElementById(
-          "sellerPostContent"
-        ).value;
+        let sellerPostContent =
+          document.getElementById("sellerPostContent").value;
         console.log(sellerPostContent);
         sellerPostContent = String(sellerPostContent);
         firebase.auth().onAuthStateChanged(async (user) => {
@@ -462,17 +483,24 @@
 
       sellerForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        let sellerNameInput =
-          document.getElementById("sellerNameInput").value;
-          let sellerAddressInput = document.getElementById("sellerAddressInput").value;
-          let sellerDescriptionInput = document.getElementById("sellerDescriptionInput").value;
+        let sellerNameInput = document.getElementById("sellerNameInput").value;
+        let sellerAddressInput =
+          document.getElementById("sellerAddressInput").value;
+        let sellerDescriptionInput = document.getElementById(
+          "sellerDescriptionInput"
+        ).value;
         sellerNameInput = String(sellerNameInput);
         sellerAddressInput = String(sellerAddressInput);
         sellerDescriptionInput = String(sellerDescriptionInput);
         firebase.auth().onAuthStateChanged(async (user) => {
           if (user) {
             let userId = user.uid;
-            await createSeller(userId, sellerNameInput, sellerAddressInput, sellerDescriptionInput);
+            await createSeller(
+              userId,
+              sellerNameInput,
+              sellerAddressInput,
+              sellerDescriptionInput
+            );
             location.reload();
           } else {
             location.replace("Login.html");
@@ -801,10 +829,7 @@
                 post.innerHTML = `<div class="userInfo">
     <h5><a href="#">${p.sender_name}</a></h5>
   </div>
-  
-  
-  
-  
+    
   <div class="postContent">
     ${p.content}
   </div>
@@ -881,8 +906,7 @@
     <h5><a href="#">${p.sender_name}</a></h5>
   </div>
   
-  
-  
+  <img src="../IMAGES/Sample-Images/MyniBazaarBackground.jpg" id="sampleSeller">
   
   <div class="postContent">
     ${p.content}
@@ -1198,7 +1222,6 @@
       //         console.log(err)
       //       });
     </script>
-   
   </body>
 </html>
 

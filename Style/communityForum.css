@@ -273,6 +273,7 @@ body {
 }
 .seller-chat h2, .community-chat h4 {
   color: white;
+  padding: 3px;
 }
 .global-chat{
   height: 140vh;
@@ -554,7 +555,6 @@ input#file-input-1, input#file-input-2 {
   padding: 3px;
   background-color: #f5f5f5;
   border-radius: 0.5em;
-  
 }
 
 .communityPost {
@@ -618,6 +618,10 @@ input#file-input-1, input#file-input-2 {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s
+}
+
+.sellerPost #sampleSeller{
+  height: 100px;
 }
 
 /* Add animation (fade in the popup) */
