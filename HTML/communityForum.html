@@ -111,13 +111,13 @@
         <div class="switchSeller">
           <div
             class="comm addSeller open-button"
-            onclick="openForm()"
+            onclick="openForm1()"
             id="addSeller"
           >
             <i class="fas fa-plus fa-2xl"></i>
           </div>
-          <div class="form-popup" id="myForm">
-            <form id="sellerForm" class="form-container">
+          <div class="form-popup1" id="myForm1">
+            <form id="sellerForm" class="form-container1">
               <h1>Register your Store</h1>
               <hr />
               <label for="seller"><b>Seller Name</b></label>
@@ -146,7 +146,7 @@
               />
 
               <button type="submit" class="btn">Create</button>
-              <button type="button" class="btn cancel" onclick="closeForm()">
+              <button type="button" class="btn cancel" onclick="closeForm1()">
                 Close
               </button>
             </form>
@@ -191,13 +191,13 @@
         <div class="switch">
           <div
             class="comm addCommunity open-button"
-            onclick="openForm()"
+            onclick="openForm2()"
             id="addCommunity"
           >
             <i class="fas fa-plus fa-2xl"></i>
           </div>
-          <div class="form-popup" id="myForm">
-            <form id="communityForm" class="form-container">
+          <div class="form-popup2" id="myForm2">
+            <form id="communityForm" class="form-container2">
               <h1>Create your Community</h1>
               <hr />
               <label for="community"><b>Community Name</b></label>
@@ -210,7 +210,7 @@
               />
 
               <button type="submit" class="btn">Create</button>
-              <button type="button" class="btn cancel" onclick="closeForm()">
+              <button type="button" class="btn cancel" onclick="closeForm2()">
                 Close
               </button>
             </form>
@@ -306,12 +306,20 @@
 
     <script type="text/javascript" src="../JS/communityForum.js"></script>
     <script>
-      function openForm() {
-        document.getElementById("myForm").style.display = "block";
+      function openForm1() {
+        document.getElementById("myForm1").style.display = "block";
       }
 
-      function closeForm() {
-        document.getElementById("myForm").style.display = "none";
+      function closeForm1() {
+        document.getElementById("myForm1").style.display = "none";
+      }
+
+      function openForm2() {
+        document.getElementById("myForm2").style.display = "block";
+      }
+
+      function closeForm2() {
+        document.getElementById("myForm2").style.display = "none";
       }
 
       // When the user clicks on <div>, open the popup
